@@ -16,7 +16,7 @@ body {
   font-family: "Arial", sans-serif;
 }
 
-.header__title--rotary {
+.header__title--rotary, header .carousel-caption {
   font-weight: 700;
 }
 
@@ -56,8 +56,72 @@ h2 {
   font-size: 40px;
 }
 
+header {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
 header .navbar-collapse {
   flex-direction: column;
+}
+header .carousel {
+  flex: 1;
+}
+header .carousel-inner {
+  height: 100%;
+}
+header .carousel-item {
+  background-size: cover;
+  height: 100%;
+}
+header .carousel-item::after {
+  background-color: rgba(0, 0, 0, 0.4);
+  content: " ";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+header .carousel-caption {
+  bottom: unset;
+  color: #fff;
+  font-size: 36px;
+  left: 30%;
+  right: 30%;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+header .carousel-control-prev, header .carousel-control-next {
+  opacity: 1;
+}
+header .carousel-control-prev-icon, header .carousel-control-next-icon {
+  background-image: unset;
+  border-bottom: 5px solid #faa742;
+  border-radius: 5px;
+  height: 40px;
+  width: 40px;
+}
+header .carousel-control-prev-icon {
+  border-left: 5px solid #faa742;
+  transform: rotate(45deg);
+}
+header .carousel-control-next-icon {
+  border-right: 5px solid #faa742;
+  transform: rotate(-45deg);
+}
+header .carousel-indicators li {
+  background-color: transparent;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+}
+header .carousel-indicators .active {
+  background-color: #faa742;
 }
 
 .header__title:hover {
@@ -81,6 +145,9 @@ header .navbar-collapse {
 }
 .header .navbar-nav .nav-link {
   color: #000;
+}
+.header .navbar-nav .nav-link:hover {
+  text-decoration: underline;
 }
 .header .navbar-nav i {
   color: #0c3c7c;
@@ -110,6 +177,9 @@ header .navbar-collapse {
 }
 .main-menu .nav-link {
   color: #fff;
+}
+.main-menu .nav-link:hover {
+  text-decoration: underline;
 }
 
 /*# sourceMappingURL=style.css.map */

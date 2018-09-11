@@ -38,10 +38,78 @@ h2
 ///////////////////////////////////////////////////////////////////////////////
 
 header
+    display: flex
+    flex-direction: column
+    height: 100vh
+
     .navbar-collapse
         flex-direction: column
 
+    .carousel
+        flex: 1
+
+        &-inner
+            height: 100%
+
+        &-item
+            background-size: cover
+            height: 100%
+
+            &::after
+                background-color: $color-carousel-shade
+                content: ' '
+                height: 100%
+                left: 0
+                position: absolute
+                top: 0
+                width: 100%
+                z-index: 0
+
+        &-caption
+            @extend %font-bold
+            bottom: unset
+            color: $color-white
+            font-size: $font-size-carousel
+            left: 30%
+            right: 30%
+            text-align: center
+            top: 50%
+            transform: translateY(-50%)
+            z-index: 1
+
+        &-control-prev,
+        &-control-next
+            opacity: 1
+
+        &-control-prev-icon,
+        &-control-next-icon
+            background-image: unset
+            border-bottom: 5px solid $color-secondary
+            border-radius: 5px
+            height: 40px
+            width: 40px
+
+        &-control-prev-icon
+            border-left: 5px solid $color-secondary
+            transform: rotate(45deg)
+
+        &-control-next-icon
+            border-right: 5px solid $color-secondary
+            transform: rotate(-45deg)
+
+        &-indicators
+            li
+                background-color: transparent
+                border: 3px solid $color-white
+                border-radius: 50%
+                height: 15px
+                width: 15px
+
+            & .active
+                background-color: $color-secondary
+
 .header
+
     &__title
         &:hover
             color: $color-primary
@@ -69,6 +137,9 @@ header
         .nav-link
             color: $color-black
 
+            &:hover
+                text-decoration: underline
+
         i
             color: $color-primary
 
@@ -95,3 +166,6 @@ header
 
     .nav-link
         color: $color-white
+
+        &:hover
+            text-decoration: underline

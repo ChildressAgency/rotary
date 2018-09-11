@@ -69,4 +69,27 @@
                 </div>
             </div>
         </div>
+
+        <?php if( is_front_page() ): ?>
+            <div id="home-carousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#home-carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#home-carousel" data-slide-to="1"></li>
+                    <li data-target="#home-carousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/carousel-1.png);" ><p class="carousel-caption">Mountain View Interactors prepare their tree for the Hope House Festival of Trees</p></div>
+                    <div class="carousel-item" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/carousel-1.png);" ><p class="carousel-caption">Mountain View Interactors prepare their tree for the Hope House Festival of Trees</p></div>
+                    <div class="carousel-item" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/carousel-1.png);" ><p class="carousel-caption">Mountain View Interactors prepare their tree for the Hope House Festival of Trees</p></div>
+                </div>
+                <a class="carousel-control-prev" href="#home-carousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#home-carousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        <?php endif; ?>
     </header>
