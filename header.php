@@ -9,7 +9,7 @@
     <meta content="public" http-equiv="cache-control">
     <meta content="private" http-equiv="cache-control">
     
-    <title>Staffor Rotary</title>
+    <title><?php echo get_bloginfo( 'name' ) . ' | ' . get_bloginfo( 'description' ); ?></title>
 
     <?php wp_head(); ?>
     
@@ -28,4 +28,45 @@
 </head>
 <body>
     <header>
+        <nav class="header navbar navbar-expand-lg">
+            <div class="container">
+                <a href="<?php echo esc_url( home_url() ); ?>" class="class="header__title"" ><h1>Stafford <img class="header__logo" src="<?php echo get_stylesheet_directory_uri() ?>/images/wheel.png" /> <span class="header__title--rotary" >Rotary</span></h1></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="#">Rotary International</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Member Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">DACdb Login</a></li>
+                    </ul>
+                    <div class="header__search">
+                        <?php get_search_form(); ?>
+                    </div>
+                </div>
+            </div>
+
+        </nav>
+        <div class="main-menu navbar navbar-expand-lg">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="#">Our Club</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Membership</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Foundation</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">About Rotary</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Get Involved</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">News and Stories</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Calendar</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </header>
