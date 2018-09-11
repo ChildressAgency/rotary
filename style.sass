@@ -1,0 +1,97 @@
+@import _variables.sass
+
+*,
+*::before,
+*::after
+    box-sizing: inherit
+    margin: 0
+    padding: 0
+
+html
+    font-size: 62.5%
+
+body
+    @extend %font-body
+    box-sizing: border-box
+    font-size: 1.6rem
+
+h1,
+h2,
+h3
+    margin-bottom: 20px
+
+p
+    margin-bottom: 15px
+
+h1
+    @extend %font-heading
+    color: $color-primary
+    font-size: $font-size-xl
+
+h2
+    @extend %font-heading
+    font-size: $font-size-heading
+
+
+///////////////////////////////////////////////////////////////////////////////
+// HEADER                                                                    //
+///////////////////////////////////////////////////////////////////////////////
+
+header
+    .navbar-collapse
+        flex-direction: column
+
+.header
+    &__title
+        &:hover
+            color: $color-primary
+            text-decoration: none
+
+        &--rotary
+            @extend %font-bold
+
+    &__logo
+        width: 107px
+
+    &__search
+        margin-left: auto
+
+    .navbar-nav
+        .nav-item
+            border-right: 1px solid $color-primary
+            font-size: $font-size-sm
+            margin-bottom: 15px
+            padding: 0 10px
+
+            &:last-of-type
+                border: 0
+
+        .nav-link
+            color: $color-black
+
+        i
+            color: $color-primary
+
+.searchform
+    position: relative
+
+    &__submit
+        background: none
+        border: 0
+        margin-right: 5px
+        position: absolute
+        right: 0
+        top: 50%
+        transform: translateY(-50%)
+
+    input
+        padding: 5px
+
+.main-menu
+    background-color: $color-primary
+
+    .nav-item
+        margin-left: 15px
+
+    .nav-link
+        color: $color-white

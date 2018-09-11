@@ -1,3 +1,115 @@
+@font-face {
+  font-family: "Depot New";
+  src: url("fonts/867d8a33-9621-46de-8cd3-00e4c1aa936f.eot?#iefix");
+  src: url("fonts/867d8a33-9621-46de-8cd3-00e4c1aa936f.eot?#iefix") format("eot"), url("fonts/c5398956-a581-429d-bd05-7c4402f551a5.woff2") format("woff2"), url("fonts/7319ca94-f068-40c9-9652-1b3cba83c177.woff") format("woff"), url("fonts/db3d9698-5f0a-4bbc-8829-9ba805797cac.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Depot New Bold";
+  src: url("fonts/f86b05a7-1d16-4632-897e-a0a15b5d9015.eot?#iefix");
+  src: url("fonts/f86b05a7-1d16-4632-897e-a0a15b5d9015.eot?#iefix") format("eot"), url("fonts/cad30bd0-ec81-4b96-8662-40a00ff65fc9.woff2") format("woff2"), url("fonts/f642d556-e5b4-4224-8bb5-fa8274f560ea.woff") format("woff"), url("fonts/b92abdc5-6dd5-4edf-a7db-41043e6ab307.ttf") format("truetype");
+}
+h2, h1 {
+  font-family: "Depot New", sans-serif;
+}
 
+body {
+  font-family: "Arial", sans-serif;
+}
+
+.header__title--rotary {
+  font-weight: 700;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  font-size: 1.6rem;
+}
+
+h1,
+h2,
+h3 {
+  margin-bottom: 20px;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+h1 {
+  color: #0c3c7c;
+  font-size: 42px;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+header .navbar-collapse {
+  flex-direction: column;
+}
+
+.header__title:hover {
+  color: #0c3c7c;
+  text-decoration: none;
+}
+.header__logo {
+  width: 107px;
+}
+.header__search {
+  margin-left: auto;
+}
+.header .navbar-nav .nav-item {
+  border-right: 1px solid #0c3c7c;
+  font-size: 14px;
+  margin-bottom: 15px;
+  padding: 0 10px;
+}
+.header .navbar-nav .nav-item:last-of-type {
+  border: 0;
+}
+.header .navbar-nav .nav-link {
+  color: #000;
+}
+.header .navbar-nav i {
+  color: #0c3c7c;
+}
+
+.searchform {
+  position: relative;
+}
+.searchform__submit {
+  background: none;
+  border: 0;
+  margin-right: 5px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.searchform input {
+  padding: 5px;
+}
+
+.main-menu {
+  background-color: #0c3c7c;
+}
+.main-menu .nav-item {
+  margin-left: 15px;
+}
+.main-menu .nav-link {
+  color: #fff;
+}
 
 /*# sourceMappingURL=style.css.map */
