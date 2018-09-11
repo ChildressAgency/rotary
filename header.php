@@ -9,7 +9,7 @@
     <meta content="public" http-equiv="cache-control">
     <meta content="private" http-equiv="cache-control">
     
-    <title><?php echo get_bloginfo( 'name' ) . ' | ' . get_bloginfo( 'description' ); ?></title>
+    <title><?php echo get_bloginfo( 'name' ); if(get_bloginfo( 'description' )): echo ' | ' . get_bloginfo( 'description' ); endif; ?></title>
 
     <?php wp_head(); ?>
     
