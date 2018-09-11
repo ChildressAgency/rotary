@@ -46,4 +46,10 @@
 	    'redirect' => false
 	  ));
 	}
+
+	// load fonts
+	function add_fonts() {
+		wp_enqueue_style( 'open-sans', 'https://fonts.googleapis.com/css?family=Open+Sans:400,700', false );
+	}
+	add_action( 'wp_enqueue_scripts', 'add_fonts' );
 ?>
