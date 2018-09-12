@@ -8,15 +8,26 @@
   src: url("fonts/f86b05a7-1d16-4632-897e-a0a15b5d9015.eot?#iefix");
   src: url("fonts/f86b05a7-1d16-4632-897e-a0a15b5d9015.eot?#iefix") format("eot"), url("fonts/cad30bd0-ec81-4b96-8662-40a00ff65fc9.woff2") format("woff2"), url("fonts/f642d556-e5b4-4224-8bb5-fa8274f560ea.woff") format("woff"), url("fonts/b92abdc5-6dd5-4edf-a7db-41043e6ab307.ttf") format("truetype");
 }
-h2, h1 {
+h1,
+h2 {
   font-family: "Depot New", sans-serif;
+}
+
+h3 {
+  font-family: "Open Sans", sans-serif;
 }
 
 body {
   font-family: "Arial", sans-serif;
 }
 
-.header__title--rotary, header .carousel-caption {
+.header__title {
+  font-weight: 500;
+}
+
+.header__title--rotary, header .carousel-caption, h1,
+h2,
+h3 {
   font-weight: 700;
 }
 
@@ -54,6 +65,10 @@ h1 {
 
 h2 {
   font-size: 40px;
+}
+
+h3 {
+  font-size: 28px;
 }
 
 header {
@@ -180,6 +195,95 @@ header .carousel-indicators .active {
 }
 .main-menu .nav-link:hover {
   text-decoration: underline;
+}
+
+.section {
+  padding: 45px 0;
+}
+.section--dark {
+  background-color: #353a40;
+  color: #fff;
+}
+
+.section-heading-underline {
+  background-color: #faa742;
+  height: 3px;
+  margin-top: -20px;
+  position: absolute;
+  right: 0;
+  width: 85%;
+}
+
+.side-borders {
+  border-left: 3px solid #faa742;
+  border-right: 3px solid #faa742;
+  padding: 0 15px;
+}
+
+.vert-spacer {
+  height: 30px;
+  width: 100%;
+}
+
+.center-content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn {
+  border: 0;
+  border-radius: 5px;
+  flex: 0;
+  font-family: "Arial", sans-serif;
+  font-size: 15px;
+  padding: 5px 20px;
+}
+.btn:hover {
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: #0c3c7c;
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: #019fcb;
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: #fff;
+  color: #353a40;
+}
+.btn-secondary:hover {
+  background-color: #faa742;
+  color: #353a40;
+}
+
+.learn-more-wrapper {
+  display: flex;
+}
+
+.learn-more {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  text-align: center;
+}
+.learn-more h3 {
+  color: #0c3c7c;
+}
+.learn-more img {
+  margin: 15px 0;
+  max-width: 50%;
+}
+.learn-more__button {
+  margin-top: auto;
 }
 
 /*# sourceMappingURL=style.css.map */

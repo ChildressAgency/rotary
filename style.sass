@@ -16,21 +16,29 @@ body
     font-size: 1.6rem
 
 h1,
+h2
+    @extend %font-heading
+
+h1,
 h2,
 h3
+    @extend %font-bold
     margin-bottom: 20px
 
 p
     margin-bottom: 15px
 
 h1
-    @extend %font-heading
     color: $color-primary
     font-size: $font-size-xl
 
 h2
-    @extend %font-heading
     font-size: $font-size-heading
+
+h3
+    @extend %font-open-sans
+    font-size: $font-size-md
+
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -111,6 +119,8 @@ header
 .header
 
     &__title
+        @extend %font-normal
+
         &:hover
             color: $color-primary
             text-decoration: none
@@ -169,3 +179,90 @@ header
 
         &:hover
             text-decoration: underline
+
+///////////////////////////////////////////////////////////////////////////////
+// CONTENT - REUSABLE                                                        //
+///////////////////////////////////////////////////////////////////////////////
+
+.section
+    padding: 45px 0
+
+    &--dark
+        background-color: $color-dark
+        color: $color-white
+
+.section-heading-underline
+    background-color: $color-secondary
+    height: 3px
+    margin-top: -20px
+    position: absolute
+    right: 0
+    width: 85%
+
+.side-borders
+    border-left: 3px solid $color-secondary
+    border-right: 3px solid $color-secondary
+    padding: 0 15px
+
+.vert-spacer
+    height: 30px
+    width: 100%
+
+.center-content
+    align-items: center
+    display: flex
+    flex-direction: column
+    height: 100%
+    justify-content: center
+    width: 100%
+
+.btn
+    border: 0
+    border-radius: 5px
+    flex: 0
+    font-family: 'Arial', sans-serif
+    font-size: $font-size-btn
+    padding: 5px 20px
+
+    &:hover
+        text-decoration: none
+
+.btn-primary
+    background-color: $color-primary
+    color: $color-white
+
+    &:hover
+        background-color: $color-primary-light
+        color: $color-white
+
+.btn-secondary
+    background-color: $color-white
+    color: $color-dark
+
+    &:hover
+        background-color: $color-secondary
+        color: $color-dark
+
+///////////////////////////////////////////////////////////////////////////////
+// CONTENT                                                                   //
+///////////////////////////////////////////////////////////////////////////////
+
+.learn-more-wrapper
+    display: flex
+
+.learn-more
+    align-items: center
+    display: flex
+    flex-direction: column
+    padding: 30px
+    text-align: center
+
+    h3
+        color: $color-primary
+
+    img
+        margin: 15px 0
+        max-width: 50%
+
+    &__button
+        margin-top: auto
