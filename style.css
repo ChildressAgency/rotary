@@ -286,4 +286,37 @@ header .carousel-indicators .active {
   margin-top: auto;
 }
 
+.footer__heading {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.footer__menu {
+  list-style: none;
+}
+.footer__menu li {
+  margin-bottom: 10px;
+}
+.footer__menu a {
+  color: #353a40;
+  margin-bottom: 10px;
+}
+.footer__menu a:hover {
+  color: #353a40;
+}
+
+.copyright {
+  align-items: flex-end;
+  display: flex;
+  justify-content: center;
+}
+.copyright img {
+  margin-right: 15px;
+}
+.copyright__link {
+  color: #faa742;
+}
+.copyright__link:hover {
+  color: #000;
+}
+
 /*# sourceMappingURL=style.css.map */
