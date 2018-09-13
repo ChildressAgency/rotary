@@ -1,0 +1,304 @@
+@import _variables.sass
+
+*,
+*::before,
+*::after
+    box-sizing: inherit
+    margin: 0
+    padding: 0
+
+html
+    font-size: 62.5%
+
+body
+    @extend %font-body
+    box-sizing: border-box
+    font-size: 1.6rem
+
+h1,
+h2
+    @extend %font-heading
+
+h1,
+h2,
+h3
+    @extend %font-bold
+    margin-bottom: 20px
+
+p
+    margin-bottom: 15px
+
+h1
+    color: $color-primary
+    font-size: $font-size-xl
+
+h2
+    font-size: $font-size-heading
+
+h3
+    @extend %font-open-sans
+    font-size: $font-size-md
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// HEADER                                                                    //
+///////////////////////////////////////////////////////////////////////////////
+
+header
+    display: flex
+    flex-direction: column
+    height: 100vh
+
+    .navbar-collapse
+        flex-direction: column
+
+    .carousel
+        flex: 1
+
+        &-inner
+            height: 100%
+
+        &-item
+            background-size: cover
+            height: 100%
+
+            &::after
+                background-color: $color-carousel-shade
+                content: ' '
+                height: 100%
+                left: 0
+                position: absolute
+                top: 0
+                width: 100%
+                z-index: 0
+
+        &-caption
+            @extend %font-bold
+            bottom: unset
+            color: $color-white
+            font-size: $font-size-carousel
+            left: 30%
+            right: 30%
+            text-align: center
+            top: 50%
+            transform: translateY(-50%)
+            z-index: 1
+
+        &-control-prev,
+        &-control-next
+            opacity: 1
+
+        &-control-prev-icon,
+        &-control-next-icon
+            background-image: unset
+            border-bottom: 5px solid $color-secondary
+            border-radius: 5px
+            height: 40px
+            width: 40px
+
+        &-control-prev-icon
+            border-left: 5px solid $color-secondary
+            transform: rotate(45deg)
+
+        &-control-next-icon
+            border-right: 5px solid $color-secondary
+            transform: rotate(-45deg)
+
+        &-indicators
+            li
+                background-color: transparent
+                border: 3px solid $color-white
+                border-radius: 50%
+                height: 15px
+                width: 15px
+
+            & .active
+                background-color: $color-secondary
+
+.header
+
+    &__title
+        @extend %font-normal
+
+        &:hover
+            color: $color-primary
+            text-decoration: none
+
+        &--rotary
+            @extend %font-bold
+
+    &__logo
+        width: 107px
+
+    &__search
+        margin-left: auto
+
+    .navbar-nav
+        .nav-item
+            border-right: 1px solid $color-primary
+            font-size: $font-size-sm
+            margin-bottom: 15px
+            padding: 0 10px
+
+            &:last-of-type
+                border: 0
+
+        .nav-link
+            color: $color-black
+
+            &:hover
+                text-decoration: underline
+
+        i
+            color: $color-primary
+
+.searchform
+    position: relative
+
+    &__submit
+        background: none
+        border: 0
+        margin-right: 5px
+        position: absolute
+        right: 0
+        top: 50%
+        transform: translateY(-50%)
+
+    input
+        padding: 5px
+
+.main-menu
+    background-color: $color-primary
+
+    .nav-item
+        margin-left: 15px
+
+    .nav-link
+        color: $color-white
+
+        &:hover
+            text-decoration: underline
+
+///////////////////////////////////////////////////////////////////////////////
+// CONTENT - REUSABLE                                                        //
+///////////////////////////////////////////////////////////////////////////////
+
+.section
+    padding: 45px 0
+
+    &--dark
+        background-color: $color-dark
+        color: $color-white
+
+.section-heading-underline
+    background-color: $color-secondary
+    height: 3px
+    margin-top: -20px
+    position: absolute
+    right: 0
+    width: 85%
+
+.side-borders
+    border-left: 3px solid $color-secondary
+    border-right: 3px solid $color-secondary
+    padding: 0 15px
+
+.vert-spacer
+    height: 30px
+    width: 100%
+
+.center-content
+    align-items: center
+    display: flex
+    flex-direction: column
+    height: 100%
+    justify-content: center
+    width: 100%
+
+.btn
+    border: 0
+    border-radius: 5px
+    flex: 0
+    font-family: 'Arial', sans-serif
+    font-size: $font-size-btn
+    padding: 5px 20px
+
+    &:hover
+        text-decoration: none
+
+.btn-primary
+    background-color: $color-primary
+    color: $color-white
+
+    &:hover
+        background-color: $color-primary-light
+        color: $color-white
+
+.btn-secondary
+    background-color: $color-white
+    color: $color-dark
+
+    &:hover
+        background-color: $color-secondary
+        color: $color-dark
+
+///////////////////////////////////////////////////////////////////////////////
+// CONTENT                                                                   //
+///////////////////////////////////////////////////////////////////////////////
+
+.learn-more-wrapper
+    display: flex
+
+.learn-more
+    align-items: center
+    display: flex
+    flex-direction: column
+    padding: 30px
+    text-align: center
+
+    h3
+        color: $color-primary
+
+    img
+        margin: 15px 0
+        max-width: 50%
+
+    &__button
+        margin-top: auto
+
+///////////////////////////////////////////////////////////////////////////////
+// FOOTER                                                                    //
+///////////////////////////////////////////////////////////////////////////////
+
+.footer
+    &__heading
+        font-size: $font-size-footer-heading
+        margin-bottom: 5px
+
+    &__menu
+        list-style: none
+
+        li
+            margin-bottom: 10px
+
+        a
+            color: $color-dark
+            margin-bottom: 10px
+
+            &:hover
+                color: $color-dark
+
+.copyright
+    align-items: flex-end
+    display: flex
+    justify-content: center
+
+    img
+        margin-right: 15px
+
+    &__link
+        color: $color-secondary
+
+        &:hover
+            color: $color-black
