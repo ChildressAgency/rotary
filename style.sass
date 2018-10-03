@@ -1,3 +1,5 @@
+// sass-lint:disable nesting-depth
+
 @import _variables.sass
 
 *,
@@ -39,6 +41,21 @@ h3
     @extend %font-open-sans
     font-size: $font-size-md
 
+img
+    max-width: 100%
+
+
+.aligncenter
+    display: block
+    margin-left: auto
+    margin-right: auto
+
+.alignleft
+    float: left
+
+.alignright
+    float: right
+
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -48,13 +65,12 @@ h3
 header
     display: flex
     flex-direction: column
-    height: 100vh
 
     .navbar-collapse
         flex-direction: column
 
     .carousel
-        flex: 1
+        height: 500px
 
         &-inner
             height: 100%
@@ -77,9 +93,9 @@ header
             @extend %font-bold
             bottom: unset
             color: $color-white
-            font-size: $font-size-carousel
-            left: 30%
-            right: 30%
+            font-size: 20px
+            left: 20%
+            right: 20%
             text-align: center
             top: 50%
             transform: translateY(-50%)
@@ -120,6 +136,8 @@ header
 
     &__title
         @extend %font-normal
+        text-align: center
+        width: 100%
 
         &:hover
             color: $color-primary
@@ -128,11 +146,12 @@ header
         &--rotary
             @extend %font-bold
 
+        img
+            display: block
+            margin: 0 auto
+
     &__logo
         width: 107px
-
-    &__search
-        margin-left: auto
 
     .navbar-nav
         .nav-item
@@ -152,6 +171,14 @@ header
 
         i
             color: $color-primary
+
+.navbar-expand-sm > .container,
+.navbar-expand-sm > .container-fluid
+    flex-wrap: wrap
+
+.navbar-toggler
+    font-size: 20px
+    margin: 0 auto
 
 .searchform
     position: relative
@@ -191,13 +218,26 @@ header
         background-color: $color-dark
         color: $color-white
 
-.section-heading-underline
-    background-color: $color-secondary
-    height: 3px
-    margin-top: -20px
-    position: absolute
-    right: 0
-    width: 85%
+        h2
+            position: relative
+
+            &::after
+                background-color: $color-secondary
+                bottom: 0
+                content: ' '
+                height: 3px
+                position: absolute
+                right: 0
+                width: 85%
+
+
+// .section-heading-underline
+//     background-color: $color-secondary
+//     height: 3px
+//     margin-top: -20px
+//     position: absolute
+//     right: 0
+//     width: 85%
 
 .side-borders
     border-left: 3px solid $color-secondary
@@ -243,12 +283,21 @@ header
         background-color: $color-secondary
         color: $color-dark
 
+.mismatched-columns
+    display: grid
+    grid-gap: 30px
+    grid-template-columns: 1fr
+    grid-template-rows: auto
+
+    &__thin
+        grid-column: span 1
+
+    &__wide
+        grid-column: span 1
+
 ///////////////////////////////////////////////////////////////////////////////
 // CONTENT                                                                   //
 ///////////////////////////////////////////////////////////////////////////////
-
-.learn-more-wrapper
-    display: flex
 
 .learn-more
     align-items: center
@@ -257,6 +306,10 @@ header
     padding: 30px
     text-align: center
 
+    &-wrapper
+        display: flex
+        flex-wrap: wrap
+
     h3
         color: $color-primary
 
@@ -264,7 +317,7 @@ header
         margin: 15px 0
         max-width: 50%
 
-    &__button
+    &__btn
         margin-top: auto
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -272,6 +325,8 @@ header
 ///////////////////////////////////////////////////////////////////////////////
 
 .footer
+    text-align: center
+
     &__heading
         font-size: $font-size-footer-heading
         margin-bottom: 5px
@@ -293,6 +348,7 @@ header
     align-items: flex-end
     display: flex
     justify-content: center
+    text-align: left
 
     img
         margin-right: 15px
@@ -302,3 +358,6 @@ header
 
         &:hover
             color: $color-black
+
+
+@import _responsive.sass

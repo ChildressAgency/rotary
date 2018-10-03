@@ -28,17 +28,17 @@
 </head>
 <body>
     <header>
-        <nav class="header navbar navbar-expand-lg">
-            <div class="container">
-                <a href="<?php echo esc_url( home_url() ); ?>" class="class="header__title"" ><h1>Stafford <img class="header__logo" src="<?php echo get_stylesheet_directory_uri() ?>/images/wheel.png" /> <span class="header__title--rotary" >Rotary</span></h1></a>
+        <nav class="header navbar navbar-expand-sm">
+            <div class="container-fluid">
+                <a href="<?php echo esc_url( home_url() ); ?>" class="header__title" ><h1>Stafford <img class="header__logo" src="<?php echo get_stylesheet_directory_uri() ?>/images/wheel.png" /> <span class="header__title--rotary" >Rotary</span></h1></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
                 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link" href="#">Rotary International</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">District 7610</a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><i class="fab fa-facebook-f"></i></a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Member Login</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">DACdb Login</a></li>
@@ -50,8 +50,8 @@
             </div>
 
         </nav>
-        <div class="main-menu navbar navbar-expand-lg">
-            <div class="container">
+        <div class="main-menu navbar navbar-expand-md">
+            <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>

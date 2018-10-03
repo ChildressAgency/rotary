@@ -1,0 +1,57 @@
+@media screen and (min-width: 576px)
+    .header
+        img
+            display: inline-block
+
+    header
+        carousel-caption
+            font-size: 24px
+
+    .learn-more
+        max-width: 50%
+
+
+@media screen and (min-width: 768px)
+    header
+        .carousel-caption
+            font-size: 30px
+            left: 30%
+            right: 30%
+
+    .mismatched-columns
+        grid-template-columns: repeat(5, 1fr)
+
+        &__thin
+            grid-column: span 2
+
+        &__wide
+            grid-column: span 3
+
+    .footer
+        text-align: left
+
+
+@media screen and (min-width: 992px)
+    .header
+        &__title
+            text-align: left
+            width: auto
+
+        &__search
+            margin-left: auto
+
+        .navbar-nav
+            margin-left: auto
+
+        img
+            display: inline-block
+
+    header
+        .carousel-caption
+            font-size: 36px
+
+    .learn-more-wrapper
+        flex-wrap: nowrap
+
+@media screen and (min-width: 1200px)
+
