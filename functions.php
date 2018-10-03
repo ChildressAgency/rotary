@@ -69,7 +69,7 @@
 	// Register Navigation Menus
 	register_nav_menus( array(
 		'header_menu' => 'Header Menu',
-		'masthead_menu' => 'Masthead Menu',
+		'main_menu' => 'Main Menu',
 		'footer_menu' => 'Footer Menu'
 	) );
 
