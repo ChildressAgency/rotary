@@ -2,10 +2,10 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-6">
-                <?php the_sub_field( 'left-content' ); ?>
+                <?php the_sub_field( 'left_content' ); ?>
             </div>
             <div class="col-12 col-md-6">
-                <?php the_sub_field( 'right-content' ); ?>
+                <?php the_sub_field( 'right_content' ); ?>
             </div>
         </div>
     </div>

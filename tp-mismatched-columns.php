@@ -2,21 +2,21 @@
     <div class="container">
         <div class="mismatched-columns">
             <div class="mismatched-columns__wide">
-                <?php the_sub_field( 'content-1' ); ?>
+                <?php the_sub_field( 'content_1' ); ?>
             </div>
             <div class="mismatched-columns__thin text-center">
                 <div class="center-content">
                     <div class="side-borders">
-                        <?php the_sub_field( 'content-2' ); ?>
+                        <?php the_sub_field( 'content_2' ); ?>
                     </div>
                 </div>
             </div>
 
             <div class="mismatched-columns__thin">
-                <?php the_sub_field( 'content-3' ); ?>
+                <?php the_sub_field( 'content_3' ); ?>
             </div>
             <div class="mismatched-columns__wide">
-                <?php the_sub_field( 'content-4' ); ?>
+                <?php the_sub_field( 'content_4' ); ?>
             </div>
         </div>
     </div>
