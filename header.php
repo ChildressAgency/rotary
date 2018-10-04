@@ -57,7 +57,13 @@
                 </button>
                 
                 <div class="collapse navbar-collapse" id="main-menu">
-                    <ul class="navbar-nav ml-auto">
+                    <?php 
+                    wp_nav_menu( array(
+                        'theme_location'    =>  'main_menu',
+                        'menu_class'        =>  'navbar-nav ml-auto',
+                        'walker'            =>  new Custom_Nav_Walker()
+                    ) ); ?>
+                    <!-- <ul class="navbar-nav ml-auto">
                         <li class="nav-item"><a class="nav-link" href="#">Our Club</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Membership</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Foundation</a></li>
@@ -65,7 +71,7 @@
                         <li class="nav-item"><a class="nav-link" href="#">Get Involved</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">News and Stories</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Calendar</a></li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>
@@ -91,5 +97,26 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
+        <?php else: ?>
+            <?php if( get_field( 'hero_image' ) ): ?>
+                <div class="hero" style="background-image: url(<?php the_field( 'hero_image' ); ?>">
+                    <div class="dark-overlay"></div>
+                    <h1><?php if( get_field( 'hero_text' ) ) { the_field( 'hero_text' ); } else { the_title(); } ?></h1>
+                </div>
+            <?php endif; ?>
+
+            <?php if( get_field( 'page_heading' ) ): ?>
+                <div class="container">
+                    <div class="section">
+                        <div class="page-heading">
+                            <img src="http://dev.childressagency.com/rotary/wp-content/uploads/2018/10/wheel.png" alt="logo" class="page-heading__logo">
+                            <div class="page-heading__heading">
+                                <h2 class="page-heading__title"><?php the_field( 'page_heading' ); ?></h2>
+                                <h3 class="page-heading__subtitle"><?php the_field( 'page_subheading' ); ?></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
         <?php endif; ?>
     </header>
