@@ -502,6 +502,10 @@ header .carousel-indicators .active {
   margin: 10px 0;
 }
 
+.contact__input {
+  margin-bottom: 15px;
+}
+
 .footer {
   text-align: center;
 }
