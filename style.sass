@@ -1,3 +1,5 @@
+// sass-lint:disable nesting-depth
+
 @import _variables.sass
 
 *,
@@ -16,19 +18,14 @@ body
     font-size: 1.6rem
 
 h1,
-h2
-    @extend %font-heading
-
-h1,
 h2,
 h3
+    @extend %font-open-sans
     @extend %font-bold
     margin-bottom: 20px
 
-p
-    margin-bottom: 15px
-
 h1
+    @extend %font-heading
     color: $color-primary
     font-size: $font-size-xl
 
@@ -39,6 +36,30 @@ h3
     @extend %font-open-sans
     font-size: $font-size-md
 
+p
+    font-family: Arial, sans-serif
+    font-size: 20px
+    margin-bottom: 15px
+
+img
+    max-width: 100%
+
+div
+    background-position: center center
+    background-size: cover
+
+
+.aligncenter
+    display: block
+    margin-left: auto
+    margin-right: auto
+
+.alignleft
+    float: left
+
+.alignright
+    float: right
+
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -48,13 +69,12 @@ h3
 header
     display: flex
     flex-direction: column
-    height: 100vh
 
     .navbar-collapse
         flex-direction: column
 
     .carousel
-        flex: 1
+        height: 500px
 
         &-inner
             height: 100%
@@ -77,9 +97,9 @@ header
             @extend %font-bold
             bottom: unset
             color: $color-white
-            font-size: $font-size-carousel
-            left: 30%
-            right: 30%
+            font-size: 20px
+            left: 20%
+            right: 20%
             text-align: center
             top: 50%
             transform: translateY(-50%)
@@ -117,9 +137,10 @@ header
                 background-color: $color-secondary
 
 .header
-
     &__title
         @extend %font-normal
+        text-align: center
+        width: 100%
 
         &:hover
             color: $color-primary
@@ -128,11 +149,12 @@ header
         &--rotary
             @extend %font-bold
 
+        img
+            display: block
+            margin: 0 auto
+
     &__logo
         width: 107px
-
-    &__search
-        margin-left: auto
 
     .navbar-nav
         .nav-item
@@ -153,6 +175,40 @@ header
         i
             color: $color-primary
 
+.menu-main-menu-container
+    display: flex
+    width: 100%
+
+.dropdown-menu
+    @extend %font-open-sans
+    border-radius: 0
+    color: $color-dark
+    font-size: 15px
+    margin-top: 4px
+
+    &::before
+        background-color: $color-white
+        content: ' '
+        height: 20px
+        left: 20px
+        position: absolute
+        top: -5px
+        transform: rotate(45deg)
+        width: 20px
+        z-index: -1
+
+.dropdown-toggle
+    &::after
+        display: none
+
+.navbar-expand-sm > .container,
+.navbar-expand-sm > .container-fluid
+    flex-wrap: wrap
+
+.navbar-toggler
+    font-size: 20px
+    margin: 0 auto
+
 .searchform
     position: relative
 
@@ -171,6 +227,9 @@ header
 .main-menu
     background-color: $color-primary
 
+    .navbar-nav
+        margin-left: 0
+
     .nav-item
         margin-left: 15px
 
@@ -180,24 +239,92 @@ header
         &:hover
             text-decoration: underline
 
+.hero
+    align-items: center
+    display: flex
+    height: 400px
+    justify-content: center
+    position: relative
+
+    h1
+        @extend %font-open-sans
+        color: $color-white
+        font-size: 34px
+        font-weight: bold
+        z-index: 1
+
 ///////////////////////////////////////////////////////////////////////////////
 // CONTENT - REUSABLE                                                        //
 ///////////////////////////////////////////////////////////////////////////////
 
+.dark-overlay
+    background-color: rgba(0, 0, 0, .5)
+    height: 100%
+    left: 0
+    position: absolute
+    top: 0
+    width: 100%
+
 .section
     padding: 45px 0
+
+    h2
+        color: $color-primary
 
     &--dark
         background-color: $color-dark
         color: $color-white
 
-.section-heading-underline
-    background-color: $color-secondary
-    height: 3px
-    margin-top: -20px
-    position: absolute
-    right: 0
-    width: 85%
+        h2
+            color: $color-white
+            position: relative
+
+            &::after
+                background-color: $color-secondary
+                bottom: 0
+                content: ' '
+                height: 3px
+                position: absolute
+                right: 0
+                width: 85%
+
+    &--thin
+        margin: 0 auto
+        width: 80%
+
+.page-heading
+    align-items: center
+    display: flex
+
+    &__logo
+        display: inline-block
+        margin-right: 15px
+
+    &__heading
+        display: inline-block
+        padding-top: 30px
+
+    &__title
+        @extend %font-open-sans
+        font-size: 30px
+        margin-bottom: 0
+        position: relative
+
+        &::after
+            background-color: $color-secondary
+            bottom: 0
+            content: ' '
+            height: 2px
+            left: 0
+            margin-left: 30px
+            position: absolute
+            width: 200px
+
+    &__subtitle
+        font-size: 26px
+        font-weight: normal
+        margin-bottom: 0
+        margin-top: 10px
 
 .side-borders
     border-left: 3px solid $color-secondary
@@ -243,12 +370,21 @@ header
         background-color: $color-secondary
         color: $color-dark
 
-///////////////////////////////////////////////////////////////////////////////
-// CONTENT                                                                   //
-///////////////////////////////////////////////////////////////////////////////
+.mismatched-columns
+    display: grid
+    grid-gap: 30px
+    grid-template-columns: 1fr
+    grid-template-rows: auto
 
-.learn-more-wrapper
-    display: flex
+    &__thin
+        grid-column: span 1
+
+    &__wide
+        grid-column: span 1
+
+///////////////////////////////////////////////////////////////////////////////
+// HOME                                                                      //
+///////////////////////////////////////////////////////////////////////////////
 
 .learn-more
     align-items: center
@@ -257,6 +393,10 @@ header
     padding: 30px
     text-align: center
 
+    &-wrapper
+        display: flex
+        flex-wrap: wrap
+
     h3
         color: $color-primary
 
@@ -264,14 +404,93 @@ header
         margin: 15px 0
         max-width: 50%
 
-    &__button
+    &__btn
         margin-top: auto
+
+///////////////////////////////////////////////////////////////////////////////
+// PEOPLE                                                                    //
+///////////////////////////////////////////////////////////////////////////////
+
+.leaders
+    &__img
+        display: block
+        margin: 0 auto
+        margin-bottom: 15px
+
+    &__info
+        display: block
+        margin-bottom: 30px
+        padding: 0 10%
+
+    &__name
+        color: $color-primary
+        font-size: 20px
+        position: relative
+
+        &::after
+            background-color: $color-secondary
+            bottom: -2px
+            content: ' '
+            height: 2px
+            left: 0
+            margin-left: 30px
+            position: absolute
+            width: 80%
+
+    &__title
+        color: $color-dark
+        font-size: 16px
+
+    &__email
+        color: $color-dark
+        font-size: 14px
+
+.members
+    &__info
+        margin-bottom: 30px
+        position: relative
+
+        &::after
+            background-color: $color-secondary
+            bottom: -12px
+            content: ' '
+            display: block
+            height: 2px
+            left: 0
+            position: absolute
+            width: 80%
+
+    &__name
+        font-size: 20px
+
+    &__text
+        font-size: 16px
+        margin-bottom: 0
+
+        &::last
+            margin-bottom: 15px
+
+    &__email
+        color: $color-dark
+        display: block
+        font-size: 14px
+        margin: 10px 0
+
+///////////////////////////////////////////////////////////////////////////////
+// CONTACT                                                                   //
+///////////////////////////////////////////////////////////////////////////////
+
+.contact
+    &__input
+        margin-bottom: 15px
 
 ///////////////////////////////////////////////////////////////////////////////
 // FOOTER                                                                    //
 ///////////////////////////////////////////////////////////////////////////////
 
 .footer
+    text-align: center
+
     &__heading
         font-size: $font-size-footer-heading
         margin-bottom: 5px
@@ -293,6 +512,7 @@ header
     align-items: flex-end
     display: flex
     justify-content: center
+    text-align: left
 
     img
         margin-right: 15px
@@ -302,3 +522,6 @@ header
 
         &:hover
             color: $color-black
+
+
+@import _responsive.sass

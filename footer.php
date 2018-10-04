@@ -1,27 +1,27 @@
-	<footer>
+	<footer class="footer">
         <div class="section container">
             <div class="row">
-                <div class="col-4">
+                <div class="col-12 col-md-4">
                     <h3 class="footer__heading">Meeting Location</h3>
                     <p>Wednesday - 11:45 AM</p>
                     <p>Riverside Center<br/>95 Riverside Parkway<br/>Fredericksburg, VA 22406</p>
                 </div>
-                <div class="col-4 side-borders">
+                <div class="col-12 col-md-4 side-borders">
                     <h3 class="footer__heading">Browse Our Site</h3>
                     <div class="row">
-                        <ul class="col-6 footer__menu">
+                        <ul class="col-12 col-sm-6 footer__menu">
                             <li><a href="#"><strong>About Our Club</strong></a></li>
                             <li><a href="#"><strong>District Links</strong></a></li>
                             <li><a href="#"><strong>About Rotary</strong></a></li>
                         </ul>
-                        <ul class="col-6 footer__menu">
+                        <ul class="col-12 col-sm-6 footer__menu">
                             <li><a href="#"><strong>Get Involved</strong></a></li>
                             <li><a href="#"><strong>News and Stories</strong></a></li>
                             <li><a href="#"><strong>Calendar</strong></a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-12 col-md-4">
                     <h3 class="footer__heading">Mail</h3>
                     <p>Rotary Club of Stafford<br/>P.O. Box 5575<br/>Fredericksburg, VA 22403</p>
                 </div>
