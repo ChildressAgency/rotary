@@ -468,6 +468,37 @@ header .carousel-indicators .active {
   font-size: 14px;
 }
 
+.members__info {
+  margin-bottom: 30px;
+  position: relative;
+}
+.members__info::after {
+  background-color: #faa742;
+  bottom: -12px;
+  content: " ";
+  display: block;
+  height: 2px;
+  left: 0;
+  position: absolute;
+  width: 80%;
+}
+.members__name {
+  font-size: 20px;
+}
+.members__text {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+.members__text::last {
+  margin-bottom: 15px;
+}
+.members__email {
+  color: #353a40;
+  display: block;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
 .footer {
   text-align: center;
 }
@@ -585,6 +616,13 @@ header .carousel-indicators .active {
     font-size: 14px;
   }
   .leaders__row {
+    margin-bottom: 30px;
+  }
+
+  .members__info {
+    margin: 0;
+  }
+  .members__row {
     margin-bottom: 30px;
   }
 }

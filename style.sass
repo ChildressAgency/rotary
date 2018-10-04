@@ -443,6 +443,37 @@ header
         color: $color-dark
         font-size: 14px
 
+.members
+    &__info
+        margin-bottom: 30px
+        position: relative
+
+        &::after
+            background-color: $color-secondary
+            bottom: -12px
+            content: ' '
+            display: block
+            height: 2px
+            left: 0
+            position: absolute
+            width: 80%
+
+    &__name
+        font-size: 20px
+
+    &__text
+        font-size: 16px
+        margin-bottom: 0
+
+        &::last
+            margin-bottom: 15px
+
+    &__email
+        color: $color-dark
+        display: block
+        font-size: 14px
+        margin: 10px 0
+
 ///////////////////////////////////////////////////////////////////////////////
 // FOOTER                                                                    //
 ///////////////////////////////////////////////////////////////////////////////
