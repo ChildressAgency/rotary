@@ -8,11 +8,12 @@
   src: url("fonts/f86b05a7-1d16-4632-897e-a0a15b5d9015.eot?#iefix");
   src: url("fonts/f86b05a7-1d16-4632-897e-a0a15b5d9015.eot?#iefix") format("eot"), url("fonts/cad30bd0-ec81-4b96-8662-40a00ff65fc9.woff2") format("woff2"), url("fonts/f642d556-e5b4-4224-8bb5-fa8274f560ea.woff") format("woff"), url("fonts/b92abdc5-6dd5-4edf-a7db-41043e6ab307.ttf") format("truetype");
 }
-h1,
-h2 {
+h1 {
   font-family: "Depot New", sans-serif;
 }
 
+.page-heading__title, .hero h1, .dropdown-menu, h1,
+h2,
 h3 {
   font-family: "Open Sans", sans-serif;
 }
@@ -54,10 +55,6 @@ h3 {
   margin-bottom: 20px;
 }
 
-p {
-  margin-bottom: 15px;
-}
-
 h1 {
   color: #0c3c7c;
   font-size: 42px;
@@ -71,8 +68,19 @@ h3 {
   font-size: 28px;
 }
 
+p {
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
 img {
   max-width: 100%;
+}
+
+div {
+  background-position: center center;
+  background-size: cover;
 }
 
 .aligncenter {
@@ -190,6 +198,33 @@ header .carousel-indicators .active {
   color: #0c3c7c;
 }
 
+.menu-main-menu-container {
+  display: flex;
+  width: 100%;
+}
+
+.dropdown-menu {
+  border-radius: 0;
+  color: #353a40;
+  font-size: 15px;
+  margin-top: 4px;
+}
+.dropdown-menu::before {
+  background-color: #fff;
+  content: " ";
+  height: 20px;
+  left: 20px;
+  position: absolute;
+  top: -5px;
+  transform: rotate(45deg);
+  width: 20px;
+  z-index: -1;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
 .navbar-expand-sm > .container,
 .navbar-expand-sm > .container-fluid {
   flex-wrap: wrap;
@@ -229,14 +264,41 @@ header .carousel-indicators .active {
   text-decoration: underline;
 }
 
+.hero {
+  align-items: center;
+  display: flex;
+  height: 400px;
+  justify-content: center;
+  position: relative;
+}
+.hero h1 {
+  color: #fff;
+  font-size: 34px;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.dark-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
 .section {
   padding: 45px 0;
+}
+.section h2 {
+  color: #0c3c7c;
 }
 .section--dark {
   background-color: #353a40;
   color: #fff;
 }
 .section--dark h2 {
+  color: #fff;
   position: relative;
 }
 .section--dark h2::after {
@@ -247,6 +309,44 @@ header .carousel-indicators .active {
   position: absolute;
   right: 0;
   width: 85%;
+}
+.section--thin {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.page-heading {
+  align-items: center;
+  display: flex;
+}
+.page-heading__logo {
+  display: inline-block;
+  margin-right: 15px;
+}
+.page-heading__heading {
+  display: inline-block;
+  padding-top: 30px;
+}
+.page-heading__title {
+  font-size: 30px;
+  margin-bottom: 0;
+  position: relative;
+}
+.page-heading__title::after {
+  background-color: #faa742;
+  bottom: 0;
+  content: " ";
+  height: 2px;
+  left: 0;
+  margin-left: 30px;
+  position: absolute;
+  width: 200px;
+}
+.page-heading__subtitle {
+  font-size: 26px;
+  font-weight: normal;
+  margin-bottom: 0;
+  margin-left: 60px;
 }
 
 .side-borders {

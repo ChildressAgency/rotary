@@ -18,19 +18,14 @@ body
     font-size: 1.6rem
 
 h1,
-h2
-    @extend %font-heading
-
-h1,
 h2,
 h3
+    @extend %font-open-sans
     @extend %font-bold
     margin-bottom: 20px
 
-p
-    margin-bottom: 15px
-
 h1
+    @extend %font-heading
     color: $color-primary
     font-size: $font-size-xl
 
@@ -41,8 +36,17 @@ h3
     @extend %font-open-sans
     font-size: $font-size-md
 
+p
+    font-family: Arial, sans-serif
+    font-size: 20px
+    margin-bottom: 15px
+
 img
     max-width: 100%
+
+div
+    background-position: center center
+    background-size: cover
 
 
 .aligncenter
@@ -172,6 +176,32 @@ header
         i
             color: $color-primary
 
+.menu-main-menu-container
+    display: flex
+    width: 100%
+
+.dropdown-menu
+    @extend %font-open-sans
+    border-radius: 0
+    color: $color-dark
+    font-size: 15px
+    margin-top: 4px
+
+    &::before
+        background-color: $color-white
+        content: ' '
+        height: 20px
+        left: 20px
+        position: absolute
+        top: -5px
+        transform: rotate(45deg)
+        width: 20px
+        z-index: -1
+
+.dropdown-toggle
+    &::after
+        display: none
+
 .navbar-expand-sm > .container,
 .navbar-expand-sm > .container-fluid
     flex-wrap: wrap
@@ -207,18 +237,44 @@ header
         &:hover
             text-decoration: underline
 
+.hero
+    align-items: center
+    display: flex
+    height: 400px
+    justify-content: center
+    position: relative
+
+    h1
+        @extend %font-open-sans
+        color: $color-white
+        font-size: 34px
+        font-weight: bold
+        z-index: 1
+
 ///////////////////////////////////////////////////////////////////////////////
 // CONTENT - REUSABLE                                                        //
 ///////////////////////////////////////////////////////////////////////////////
 
+.dark-overlay
+    background-color: rgba(0, 0, 0, .5)
+    height: 100%
+    left: 0
+    position: absolute
+    top: 0
+    width: 100%
+
 .section
     padding: 45px 0
+
+    h2
+        color: $color-primary
 
     &--dark
         background-color: $color-dark
         color: $color-white
 
         h2
+            color: $color-white
             position: relative
 
             &::after
@@ -230,14 +286,43 @@ header
                 right: 0
                 width: 85%
 
+    &--thin
+        margin: 0 auto
+        width: 80%
 
-// .section-heading-underline
-//     background-color: $color-secondary
-//     height: 3px
-//     margin-top: -20px
-//     position: absolute
-//     right: 0
-//     width: 85%
+.page-heading
+    align-items: center
+    display: flex
+
+    &__logo
+        display: inline-block
+        margin-right: 15px
+
+    &__heading
+        display: inline-block
+        padding-top: 30px
+
+    &__title
+        @extend %font-open-sans
+        font-size: 30px
+        margin-bottom: 0
+        position: relative
+
+        &::after
+            background-color: $color-secondary
+            bottom: 0
+            content: ' '
+            height: 2px
+            left: 0
+            margin-left: 30px
+            position: absolute
+            width: 200px
+
+    &__subtitle
+        font-size: 26px
+        font-weight: normal
+        margin-bottom: 0
+        margin-left: 60px
 
 .side-borders
     border-left: 3px solid $color-secondary
