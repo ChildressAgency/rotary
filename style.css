@@ -346,7 +346,7 @@ header .carousel-indicators .active {
   font-size: 26px;
   font-weight: normal;
   margin-bottom: 0;
-  margin-left: 60px;
+  margin-top: 10px;
 }
 
 .side-borders {
@@ -564,6 +564,11 @@ header .carousel-indicators .active {
   }
   .mismatched-columns__wide {
     grid-column: span 3;
+  }
+
+  .page-heading__subtitle {
+    margin-top: 0;
+    margin-left: 60px;
   }
 
   .footer {
