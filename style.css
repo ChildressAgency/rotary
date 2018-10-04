@@ -434,22 +434,22 @@ header .carousel-indicators .active {
   margin-top: auto;
 }
 
-.people__img {
+.leaders__img {
   display: block;
   margin: 0 auto;
   margin-bottom: 15px;
 }
-.people__info {
+.leaders__info {
   display: block;
   margin-bottom: 30px;
   padding: 0 10%;
 }
-.people__name {
+.leaders__name {
   color: #0c3c7c;
   font-size: 20px;
   position: relative;
 }
-.people__name::after {
+.leaders__name::after {
   background-color: #faa742;
   bottom: -2px;
   content: " ";
@@ -459,11 +459,11 @@ header .carousel-indicators .active {
   position: absolute;
   width: 80%;
 }
-.people__title {
+.leaders__title {
   color: #353a40;
   font-size: 16px;
 }
-.people__email {
+.leaders__email {
   color: #353a40;
   font-size: 14px;
 }
@@ -562,29 +562,29 @@ header .carousel-indicators .active {
     flex-wrap: nowrap;
   }
 
-  .people__img {
+  .leaders__img {
     display: inline-block;
     margin: 0;
     margin-right: 15px;
   }
-  .people__info {
+  .leaders__info {
     display: inline-block;
     margin: 0;
     padding: 0;
   }
-  .people__name {
+  .leaders__name {
     font-size: 24px;
   }
-  .people__name::after {
+  .leaders__name::after {
     width: 80%;
   }
-  .people__title {
+  .leaders__title {
     font-size: 18px;
   }
-  .people__email {
+  .leaders__email {
     font-size: 14px;
   }
-  .people__row {
+  .leaders__row {
     margin-bottom: 30px;
   }
 }
