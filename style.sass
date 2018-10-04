@@ -381,7 +381,7 @@ header
         grid-column: span 1
 
 ///////////////////////////////////////////////////////////////////////////////
-// CONTENT                                                                   //
+// HOME                                                                      //
 ///////////////////////////////////////////////////////////////////////////////
 
 .learn-more
@@ -404,6 +404,44 @@ header
 
     &__btn
         margin-top: auto
+
+///////////////////////////////////////////////////////////////////////////////
+// PEOPLE                                                                    //
+///////////////////////////////////////////////////////////////////////////////
+
+.people
+    &__img
+        display: block
+        margin: 0 auto
+        margin-bottom: 15px
+
+    &__info
+        display: block
+        margin-bottom: 30px
+        padding: 0 10%
+
+    &__name
+        color: $color-primary
+        font-size: 20px
+        position: relative
+
+        &::after
+            background-color: $color-secondary
+            bottom: -2px
+            content: ' '
+            height: 2px
+            left: 0
+            margin-left: 30px
+            position: absolute
+            width: 80%
+
+    &__title
+        color: $color-dark
+        font-size: 16px
+
+    &__email
+        color: $color-dark
+        font-size: 14px
 
 ///////////////////////////////////////////////////////////////////////////////
 // FOOTER                                                                    //
