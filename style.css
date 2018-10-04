@@ -254,6 +254,9 @@ header .carousel-indicators .active {
 .main-menu {
   background-color: #0c3c7c;
 }
+.main-menu .navbar-nav {
+  margin-left: 0;
+}
 .main-menu .nav-item {
   margin-left: 15px;
 }
@@ -556,6 +559,10 @@ header .carousel-indicators .active {
     right: 30%;
   }
 
+  .main-menu .navbar-nav {
+    margin-left: auto;
+  }
+
   .mismatched-columns {
     grid-template-columns: repeat(5, 1fr);
   }
@@ -567,8 +574,8 @@ header .carousel-indicators .active {
   }
 
   .page-heading__subtitle {
-    margin-top: 0;
     margin-left: 60px;
+    margin-top: 0;
   }
 
   .footer {

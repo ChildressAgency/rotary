@@ -60,18 +60,9 @@
                     <?php 
                     wp_nav_menu( array(
                         'theme_location'    =>  'main_menu',
-                        'menu_class'        =>  'navbar-nav ml-auto',
+                        'menu_class'        =>  'navbar-nav',
                         'walker'            =>  new Custom_Nav_Walker()
                     ) ); ?>
-                    <!-- <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="#">Our Club</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Membership</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Foundation</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">About Rotary</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Get Involved</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">News and Stories</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Calendar</a></li>
-                    </ul> -->
                 </div>
             </div>
         </div>
