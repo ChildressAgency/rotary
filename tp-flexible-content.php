@@ -6,7 +6,10 @@ if( have_rows('custom_fields') ):
      // loop through the rows of data
     while ( have_rows('custom_fields') ) : the_row();
 
-        if( get_row_layout() == '2_col' ):
+        if( get_row_layout() == 'basic' ):
+            get_template_part( 'tp-basic' );
+
+        elseif( get_row_layout() == '2_col' ):
             get_template_part( 'tp-2-col' );
 
         elseif( get_row_layout() == '2_col_img_right' ):

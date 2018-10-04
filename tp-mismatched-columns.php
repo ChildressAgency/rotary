@@ -1,5 +1,5 @@
-<div class="section <?php if( get_sub_field( 'is_dark' ) ) echo 'section--dark'; ?>">
-    <div class="container">
+<div class="container">
+    <div class="section <?php if( get_sub_field( 'is_dark' ) ) echo 'section--dark'; ?>">
         <div class="mismatched-columns">
             <div class="mismatched-columns__wide">
                 <?php the_sub_field( 'content_1' ); ?>
