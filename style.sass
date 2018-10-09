@@ -42,6 +42,7 @@ p
     margin-bottom: 15px
 
 img
+    height: auto
     max-width: 100%
 
 div
@@ -545,9 +546,11 @@ header
         display: inline-block
 
     &__title
-        color: $color-primary
         font-size: 22px
         margin-bottom: 0
+
+        a
+            color: $color-primary
 
     &__date
         font-size: 18px
@@ -563,8 +566,9 @@ header
             color: $color-dark
 
     &__details
+        column-gap: 15px
         display: grid
-        grid-template-columns: 125px auto
+        grid-template-columns: max-content auto
         grid-template-rows: auto
         margin-left: 85px
         max-height: 0
@@ -573,6 +577,22 @@ header
 
     .show-details
         max-height: 200px
+
+.single
+    &__title
+        font-size: 30px
+        margin-bottom: 0
+        margin-top: 30px
+
+    &__details
+        color: $color-grey
+        column-gap: 15px
+        display: grid
+        grid-template-columns: max-content auto
+        grid-template-rows: auto
+
+        & > p
+            margin-bottom: 0
 
 ///////////////////////////////////////////////////////////////////////////////
 // FOOTER                                                                    //

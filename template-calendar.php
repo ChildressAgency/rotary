@@ -2,7 +2,7 @@
 
 /* 
  * Template Name: Calendar Template
- * Post Type: page
+ * Template Post Type: page
  */
 
 get_header(); ?>
@@ -76,8 +76,8 @@ get_header(); ?>
                                     <div class="event__heading">
                                         <div class="event__icon"><i class="far fa-calendar-alt"></i></div>
                                         <div class="event__title-date">
-                                            <h3 class="event__title"><?php the_title(); ?></h3>
-                                            <p class="event__date"><?php echo $date->format( 'F d' ); ?> at <?php the_field( 'start_time' ); ?> to <?php the_field( 'end_time' ); ?></p>
+                                            <h3 class="event__title"><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                                            <p class="event__date"><?php echo $date->format( 'F d' ); ?><?php if( get_field( 'start_time' ) ) echo ' at ' . get_field( 'start_time' ); ?><?php if( get_field( 'end_time' ) ) echo ' to ' . get_field( 'end_time' ); ?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@ get_header(); ?>
                     <?php endwhile; wp_reset_postdata(); ?>
                     <hr />
                 <?php else: ?>
-                    <h2 class="text-center my-5"><strong>No Upcoming Committee Meetings</strong></h4>
+                    <h2 class="text-center my-5"><strong>No Upcoming Events</strong></h4>
                 <?php endif; ?>
             </div>
         </div>

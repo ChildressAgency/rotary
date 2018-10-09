@@ -360,7 +360,7 @@
 		                    <div class="event__heading">
 		                        <div class="event__icon"><i class="far fa-calendar-alt"></i></div>
 		                        <div class="event__title-date">
-		                            <h3 class="event__title">' . get_the_title() . '</h3>
+		                            <h3 class="event__title"><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>
 		                            <p class="event__date">' . $date->format( 'F d' ) . ' at ' . get_field( 'start_time' ) . ' to ' . get_field( 'end_time' ) . '</p>
 		                        </div>
 		                    </div>

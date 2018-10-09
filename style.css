@@ -75,6 +75,7 @@ p {
 }
 
 img {
+  height: auto;
   max-width: 100%;
 }
 
@@ -563,9 +564,11 @@ header .carousel-indicators .active {
   display: inline-block;
 }
 .event__title {
-  color: #0c3c7c;
   font-size: 22px;
   margin-bottom: 0;
+}
+.event__title a {
+  color: #0c3c7c;
 }
 .event__date {
   font-size: 18px;
@@ -581,8 +584,9 @@ header .carousel-indicators .active {
   color: #353a40;
 }
 .event__details {
+  column-gap: 15px;
   display: grid;
-  grid-template-columns: 125px auto;
+  grid-template-columns: max-content auto;
   grid-template-rows: auto;
   margin-left: 85px;
   max-height: 0;
@@ -591,6 +595,22 @@ header .carousel-indicators .active {
 }
 .event .show-details {
   max-height: 200px;
+}
+
+.single__title {
+  font-size: 30px;
+  margin-bottom: 0;
+  margin-top: 30px;
+}
+.single__details {
+  color: #777;
+  column-gap: 15px;
+  display: grid;
+  grid-template-columns: max-content auto;
+  grid-template-rows: auto;
+}
+.single__details > p {
+  margin-bottom: 0;
 }
 
 .footer {
