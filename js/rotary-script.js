@@ -1,9 +1,5 @@
-var detailsToggles = document.getElementsByClassName( 'event__details-toggle' );
-
-for( i = 0; i < detailsToggles.length; i++ ){
-    detailsToggles[i].addEventListener( 'click', function(){
-        var panel = this.nextElementSibling;
-
-        panel.classList.toggle( 'show-details' );
+$(document).ready(function(){
+    $('#events-list').on( 'click', '.event__details-toggle', function(){
+        $(this).siblings().toggleClass( 'show-details' );
     } );
-}
+});
