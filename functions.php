@@ -15,23 +15,37 @@
 	}
 	add_action('wp_enqueue_scripts', 'jquery_cdn');
 	function rotary_scripts(){
-	  wp_register_script(
-		'bootstrap-script', 
-		'//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', 
-		array('jquery'), 
-		'', 
-		true
-	  );
-	  wp_register_script(
-		'rotary-script', 
-		'/wp-content/themes/rotary/js/rotary-script.js', 
-		array('jquery'), 
-		'', 
-		true
-	  );
-	  
-	  wp_enqueue_script('bootstrap-script');
-	  //wp_enqueue_script('rotary-script');
+		wp_register_script(
+			'bootstrap-script', 
+			'//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', 
+			array('jquery'), 
+			'', 
+			true
+		);
+		wp_register_script(
+			'rotary-script', 
+			'/wp-content/themes/rotary/js/rotary-script.js', 
+			array('jquery'), 
+			'', 
+			true
+		);
+		wp_register_script(
+			'reload-posts',
+			'/wp-content/themes/rotary/js/reload-posts.js', 
+			array('jquery'), 
+			'', 
+			true
+		);
+
+		wp_enqueue_script('bootstrap-script');
+		wp_enqueue_script('rotary-script');
+		wp_enqueue_script('reload-posts');
+
+		$params = array(
+			'ajaxurl' 				=> admin_url( 'admin-ajax.php' ),
+			'nonce'					=> wp_create_nonce('rotary-nonce')
+		);
+		wp_localize_script( 'reload-posts', 'ajaxParams', $params);
 	}
 	add_action('wp_enqueue_scripts', 'rotary_scripts', 100);
 	
@@ -249,5 +263,141 @@
 	    $buttons[] = "sh_custom_button";
 	    //return $buttons
 	    return $buttons;
+	}
+
+
+	/*
+	 * Reload event posts using given date parameters
+	 */
+	add_action( 'wp_ajax_get_event_posts', 'get_event_posts' );
+	add_action( 'wp_ajax_nopriv_get_event_posts', 'get_event_posts' );
+	function get_event_posts(){
+		check_ajax_referer( 'rotary-nonce', 'security' );
+		global $post;
+
+		// get the parameters
+		$start_date = urldecode( $_POST['start_date'] );
+		if( $start_date ){
+			$start_date = new DateTime( $start_date );
+			$start_date = $start_date->format('Ymd');
+		}
+		$end_date = urldecode( $_POST['end_date'] );
+		if( $end_date ){
+			$end_date = new DateTime( $end_date );
+			$end_date = $end_date->format('Ymd');
+		}
+		$post_ID = urldecode( $_POST['post_ID'] );
+		$search = urldecode( $_POST['search'] );
+
+		// if no start date is provided, use today
+		if( !$start_date )
+			$start_date = current_time('Ymd');
+
+		// if no end date is provided, skip it
+		if( !$end_date ){
+			$meta_query = array(
+		        array(
+		            'key'           => 'date',
+		            'compare'       => '>=',
+		            'value'         => $start_date
+		        )
+		    );
+		} else {
+			$meta_query = array(
+		        array(
+		            'key'           => 'date',
+		            'compare'       => '>=',
+		            'value'         => $start_date
+		        ),
+		        array(
+		            'key'           => 'date',
+		            'compare'       => '<=',
+		            'value'         => $end_date
+		        )
+		    );
+		}
+
+		// the value to be returned
+		$return = '';
+
+		// construct the query
+		$args = array(
+		    'post_type'         => 'post',
+		    'post_status'       => 'publish',
+		    'category__in'      => get_field( 'category', $post_ID ),
+		    'posts_per_page'    => -1,
+		    'meta_key'          => 'date',
+		    'orderby'           => 'meta_value_num',
+		    'order'             => 'ASC',
+		    's'					=> $search,
+		    'meta_query'        => $meta_query
+		);
+		$posts = new WP_Query( $args );
+		$month = '';
+		
+		if( $posts->have_posts() ){
+			while( $posts->have_posts() ){
+				$posts->the_post();
+
+		        $date = get_field( 'date', false, false );
+		        $date = new DateTime( $date );
+		        $newMonth = $date->format( 'F' );
+		
+		        if( $month != $newMonth ){
+		            $return .= '<h2 class="calendar__month-heading">' . $newMonth . '</h2>';
+		        }
+		        else{
+		            $return .= '<hr />'; 
+		        }
+		
+		        $return .= '<div class="event">
+		            <div class="event__summary">
+		                <div class="event__big-date">
+		                    <p>' . $date->format( 'd' ) . '</p>
+		                    <p>' . $date->format( 'D' ) . '</p>
+		                </div>
+		                <div class="event__info">
+		                    <div class="event__heading">
+		                        <div class="event__icon"><i class="far fa-calendar-alt"></i></div>
+		                        <div class="event__title-date">
+		                            <h3 class="event__title">' . get_the_title() . '</h3>
+		                            <p class="event__date">' . $date->format( 'F d' ) . ' at ' . get_field( 'start_time' ) . ' to ' . get_field( 'end_time' ) . '</p>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>';
+
+		            if( get_field( 'speaker' ) || get_field( 'topic' ) || get_field( 'location' ) ){
+		                $return .= '<div class="event__details-wrapper">
+		                    <p id="event-details-toggle" class="event__details-toggle"><a>+ View Event Details</a></p>
+		                    <div id="event-details" class="event__details">';
+		                        if( get_field( 'speaker' ) ){ 
+		                        	$return .= '<p class="event__detail-property"><strong>Speaker: </strong></p><p class="event__detail-value">' . get_field( 'speaker' ) . '</p>'; 
+		                        }
+		                        if( get_field( 'topic' ) ){ 
+		                        	$return .= '<p class="event__detail-property"><strong>Topic: </strong></p><p class="event__detail-value">' . get_field( 'topic' ) . '</p>'; 
+		                        }
+		                        if( get_field( 'location' ) ){ 
+		                        	$return .= '<p class="event__detail-property"><strong>Location: </strong></p><p class="event__detail-value">' . get_field( 'location' ) . '</p>'; 
+		                        }
+		                $return .= '</div>
+		                </div>';
+		            }
+		        $return .= '</div>';
+
+		        if( $month != $newMonth )
+		            $month = $newMonth;
+
+		    }
+
+		    wp_reset_postdata();
+		    $return .= '<hr />';
+		} else{
+		    $return .= '<h2 class="text-center my-5"><strong>No Results</strong></h4>';
+		}
+
+		echo $return;
+
+		exit;
 	}
 ?>
