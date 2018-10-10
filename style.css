@@ -744,10 +744,9 @@ header .carousel-indicators .active {
 }
 
 .twentyreasons {
-  column-gap: 30px;
   display: grid;
+  grid-gap: 30px;
   grid-template-columns: 1fr;
-  row-gap: 30px;
 }
 .twentyreasons__reason {
   display: flex;
@@ -770,6 +769,25 @@ header .carousel-indicators .active {
 .twentyreasons__description hr {
   background-color: #faa742;
   margin-top: auto;
+}
+
+.stories {
+  display: grid;
+  grid-auto-rows: 20px;
+  grid-gap: 30px;
+  grid-template-columns: 2fr 1fr;
+}
+.stories__img {
+  margin-bottom: 15px;
+  width: 100%;
+}
+.stories__title {
+  color: #0c3c7c;
+  font-size: 20px;
+}
+.stories__readmore {
+  color: #353a40;
+  font-weight: bold;
 }
 
 .footer {

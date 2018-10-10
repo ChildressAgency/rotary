@@ -286,6 +286,24 @@
 	}
 	add_action( 'init', 'create_post_type_newsletter' );
 
+	/*
+	 * Newsletter Custom Post Type
+	 */
+	function create_post_type_story() {
+	  register_post_type( 'story',
+	    array(
+	      'labels' 			=> array(
+	        'name' 			=> __( 'Stories' ),
+	        'singular_name' => __( 'Story' )
+	      ),
+	      'public' 			=> true,
+	      'has_archive' 	=> false,
+	      'rewrite'			=> array( 'slug' => 'stories' )
+	    )
+	  );
+	}
+	add_action( 'init', 'create_post_type_story' );
+
 
 	/*
 	 * Reload event posts using given date parameters

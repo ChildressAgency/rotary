@@ -722,10 +722,9 @@ header
 ///////////////////////////////////////////////////////////////////////////////
 
 .twentyreasons
-    column-gap: 30px
     display: grid
+    grid-gap: 30px
     grid-template-columns: 1fr
-    row-gap: 30px
 
     &__reason
         display: flex
@@ -749,6 +748,27 @@ header
             background-color: $color-secondary
             margin-top: auto
 
+///////////////////////////////////////////////////////////////////////////////
+// STORIES                                                                   //
+///////////////////////////////////////////////////////////////////////////////
+
+.stories
+    display: grid
+    grid-auto-rows: 20px;
+    grid-gap: 30px
+    grid-template-columns: 2fr 1fr
+
+    &__img
+        margin-bottom: 15px
+        width: 100%
+
+    &__title
+        color: $color-primary
+        font-size: 20px
+
+    &__readmore
+        color: $color-dark
+        font-weight: bold
 
 ///////////////////////////////////////////////////////////////////////////////
 // FOOTER                                                                    //
