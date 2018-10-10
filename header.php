@@ -88,6 +88,8 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
+        <?php elseif( is_archive() ): ?>
+            
         <?php else: ?>
             <?php if( get_field( 'hero_image' ) ): ?>
                 <div class="hero" style="background-image: url(<?php the_field( 'hero_image' ); ?>">

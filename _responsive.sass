@@ -10,6 +10,15 @@
     .learn-more
         max-width: 50%
 
+    .fourwaytest
+        grid-template-columns: repeat(2, 1fr)
+
+    .objectivelist
+        grid-template-columns: max-content 1fr
+
+    .twentyreasons
+        grid-template-columns: repeat(2, 1fr)
+
 
 @media screen and (min-width: 768px)
     header
@@ -21,6 +30,10 @@
     .main-menu
         .navbar-nav
             margin-left: auto
+
+    .section--thin
+        margin: 0 auto
+        width: 80%
 
     .mismatched-columns
         grid-template-columns: repeat(5, 1fr)
@@ -35,6 +48,13 @@
         &__subtitle
             margin-left: 60px
             margin-top: 0
+
+    .fourwaytest
+        grid-template-columns: repeat(4, 1fr)
+
+    .twentyreasons
+        &__heading
+            font-size: 28px
 
     .footer
         text-align: left
@@ -95,6 +115,8 @@
         &__row
             margin-bottom: 30px
 
+    .twentyreasons
+        grid-template-columns: repeat(3, 1fr)
 
 
 @media screen and (min-width: 1200px)
