@@ -93,7 +93,10 @@
 
 	    function start_el(&$output, $item, $depth = 0, $args = array(), $current_object_id = 0) {
 	        global $post;
-	        $pageID = $post->ID; // id of current page
+	        if( $post )
+	        	$pageID = $post->ID; // id of current page
+	        else
+	        	$pageID = '';
 			$title = $item->title; // title of menu item
 			$objectID = $item->object_id; // page id of menu item
 			$permalink = $item->url; // link of menu item
@@ -271,12 +274,13 @@
 	function create_post_type_newsletter() {
 	  register_post_type( 'newsletter',
 	    array(
-	      'labels' => array(
-	        'name' => __( 'Newsletters' ),
+	      'labels' 			=> array(
+	        'name' 			=> __( 'Newsletters' ),
 	        'singular_name' => __( 'Newsletter' )
 	      ),
-	      'public' => true,
-	      'has_archive' => false,
+	      'public' 			=> true,
+	      'has_archive' 	=> false,
+	      'rewrite'			=> array( 'slug' => 'newsletters' )
 	    )
 	  );
 	}
