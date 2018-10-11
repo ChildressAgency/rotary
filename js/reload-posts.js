@@ -1,4 +1,8 @@
 $(document).ready(function(){
+    $('#events-list').on( 'click', '.event__details-toggle', function(){
+        $(this).siblings().toggleClass( 'show-details' );
+    } );
+
     $('#date_search').click(function( e ){
         e.preventDefault();
 
@@ -38,10 +42,10 @@ $(document).ready(function(){
             {  
                 $('#events-list').html(data);
             },  
-            error: function(MLHttpRequest, textStatus, errorThrown)
-            {  
-                alert(errorThrown);
-            }
+            // error: function(MLHttpRequest, textStatus, errorThrown)
+            // {  
+            //     alert(errorThrown);
+            // }
         });
     }
 });
