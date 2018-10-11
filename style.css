@@ -379,6 +379,13 @@ header .carousel-indicators .active {
   margin-top: 10px;
 }
 
+.page-title {
+  color: #0c3c7c;
+}
+.page-title a {
+  color: #0c3c7c;
+}
+
 .side-borders {
   border-left: 3px solid #faa742;
   border-right: 3px solid #faa742;
