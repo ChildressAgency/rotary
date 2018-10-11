@@ -321,8 +321,8 @@ header .carousel-indicators .active {
 }
 
 .section {
-  padding: 45px 0;
   overflow: hidden;
+  padding: 45px 0;
 }
 .section h2 {
   color: #0c3c7c;
@@ -937,6 +937,10 @@ header .carousel-indicators .active {
 
   header .carousel-caption {
     font-size: 36px;
+  }
+
+  .menu-header-menu-container {
+    align-self: end;
   }
 
   .learn-more-wrapper {
