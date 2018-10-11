@@ -322,6 +322,7 @@ header .carousel-indicators .active {
 
 .section {
   padding: 45px 0;
+  overflow: hidden;
 }
 .section h2 {
   color: #0c3c7c;
@@ -793,6 +794,17 @@ header .carousel-indicators .active {
 .view-more {
   display: flex;
   justify-content: end;
+}
+
+.single-story__title {
+  font-size: 30px;
+  margin-bottom: 15px;
+  margin-top: 30px;
+}
+.single-story__date {
+  color: #353a40;
+  font-size: 18px;
+  margin-bottom: 30px;
 }
 
 .footer {
