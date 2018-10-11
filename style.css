@@ -775,7 +775,7 @@ header .carousel-indicators .active {
   display: grid;
   grid-auto-rows: 20px;
   grid-gap: 30px;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr;
 }
 .stories__img {
   margin-bottom: 15px;
@@ -788,6 +788,11 @@ header .carousel-indicators .active {
 .stories__readmore {
   color: #353a40;
   font-weight: bold;
+}
+
+.view-more {
+  display: flex;
+  justify-content: end;
 }
 
 .footer {
@@ -851,6 +856,10 @@ header .carousel-indicators .active {
   .twentyreasons {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .stories {
+    grid-template-columns: 3fr 2fr;
+  }
 }
 @media screen and (min-width: 768px) {
   header .carousel-caption {
@@ -889,6 +898,10 @@ header .carousel-indicators .active {
 
   .twentyreasons__heading {
     font-size: 28px;
+  }
+
+  .stories {
+    grid-template-columns: 2fr 1fr;
   }
 
   .footer {

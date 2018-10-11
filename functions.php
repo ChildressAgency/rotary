@@ -15,6 +15,8 @@
 	}
 	add_action('wp_enqueue_scripts', 'jquery_cdn');
 	function rotary_scripts(){
+		global $wp_query;
+
 		wp_register_script(
 			'bootstrap-script', 
 			'//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', 
@@ -23,29 +25,41 @@
 			true
 		);
 		wp_register_script(
-			'rotary-script', 
-			'/wp-content/themes/rotary/js/rotary-script.js', 
-			array('jquery'), 
-			'', 
-			true
-		);
-		wp_register_script(
-			'reload-posts',
+			'reload-posts', 
 			'/wp-content/themes/rotary/js/reload-posts.js', 
 			array('jquery'), 
 			'', 
 			true
 		);
+		wp_register_script(
+			'css-grid-masonry',
+			'/wp-content/themes/rotary/js/css-grid-masonry.js', 
+			array('jquery'), 
+			'', 
+			true
+		);
 
-		wp_enqueue_script('bootstrap-script');
-		wp_enqueue_script('rotary-script');
-		wp_enqueue_script('reload-posts');
+		wp_enqueue_script( 'bootstrap-script' );
+
+		if( is_page_template( 'template-newsletters.php' ) || is_page_template( 'template-calendar.php' ) )
+			wp_enqueue_script( 'reload-posts' );
+
+		if( is_page_template( 'template-stories.php' ) )
+			wp_enqueue_script( 'css-grid-masonry' );
 
 		$params = array(
 			'ajaxurl' 				=> admin_url( 'admin-ajax.php' ),
-			'nonce'					=> wp_create_nonce('rotary-nonce')
+			'nonce'					=> wp_create_nonce( 'rotary-nonce' ),
 		);
 		wp_localize_script( 'reload-posts', 'ajaxParams', $params);
+
+		$storyParams = array(
+			'posts'					=> json_encode( $wp_query->query_vars ),
+			'current_page'			=> get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1,
+			'max_page'				=> ceil( $wp_query->found_posts / get_option( 'posts_per_page' ) ),
+		);
+		wp_localize_script( 'css-grid-masonry', 'ajaxParams', $params );
+		wp_localize_script( 'css-grid-masonry', 'storyParams', $storyParams );
 	}
 	add_action('wp_enqueue_scripts', 'rotary_scripts', 100);
 	
@@ -308,8 +322,6 @@
 	/*
 	 * Reload event posts using given date parameters
 	 */
-	add_action( 'wp_ajax_get_event_posts', 'get_event_posts' );
-	add_action( 'wp_ajax_nopriv_get_event_posts', 'get_event_posts' );
 	function get_event_posts(){
 		check_ajax_referer( 'rotary-nonce', 'security' );
 		global $post;
@@ -435,12 +447,12 @@
 
 		exit;
 	}
+	add_action( 'wp_ajax_get_event_posts', 'get_event_posts' );
+	add_action( 'wp_ajax_nopriv_get_event_posts', 'get_event_posts' );
 
 	/*
 	 * Reload event posts using given date parameters
 	 */
-	add_action( 'wp_ajax_get_newsletter_posts', 'get_newsletter_posts' );
-	add_action( 'wp_ajax_nopriv_get_newsletter_posts', 'get_newsletter_posts' );
 	function get_newsletter_posts(){
 		check_ajax_referer( 'rotary-nonce', 'security' );
 		global $post;
@@ -552,4 +564,46 @@
 
 		exit;
 	}
+	add_action( 'wp_ajax_get_newsletter_posts', 'get_newsletter_posts' );
+	add_action( 'wp_ajax_nopriv_get_newsletter_posts', 'get_newsletter_posts' );
+
+	function story_view_more(){
+
+		$paged = $_POST['page'] + 1; // next page to be loaded
+
+		$args = array(
+			'post_type'         => 'story',
+			'orderby'           => 'date',
+			'order'             => 'DESC',
+			'paged'				=> $paged,
+		);
+
+		$posts = new WP_Query( $args );
+	 
+		if( $posts->have_posts() ) :
+	 		$return = '';
+
+			while( $posts->have_posts() ): $posts->the_post();
+                $return .= '<div class="stories__story">
+                    <div class="stories__content">
+                        <img class="stories__img" src="' . get_field( 'featured_image' ) . '">
+                        <h3 class="stories__title">' . get_the_title() . '</h3>
+                        <p>';
+                if( get_field( 'excerpt' ) )
+                	$return .= get_field( 'excerpt' );
+                else
+                	$return .= mb_strimwidth( get_field( 'content' ), 0, 400, '...' );
+                $return .= '</p>
+                        <a class="stories__readmore" href="' . get_the_permalink() . '">Read More</a>
+                    </div>
+                </div>';
+            endwhile;
+		endif;
+
+		echo $return;
+
+		exit;
+	}
+	add_action('wp_ajax_story_view_more', 'story_view_more');
+	add_action('wp_ajax_nopriv_story_view_more', 'story_view_more');
 ?>

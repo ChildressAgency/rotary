@@ -11,13 +11,12 @@ get_header(); ?>
         <?php
         $args = array(
             'post_type'         => 'story',
-            'posts_per_page'    => -1,
             'orderby'           => 'date',
             'order'             => 'DESC',
         );
         $posts = new WP_Query( $args );
         $month = '';
-        
+
         if( $posts->have_posts() ): ?>
             <div class="container">
                 <div class="section">
@@ -32,9 +31,19 @@ get_header(); ?>
                                 </div>
                             </div>
                         <?php endwhile; ?>
+                        <div id="append-stories"></div>
                     </div>
                 </div>
+
+                <?php if( $posts->max_num_pages > 1 ): ?>
+                    <div class="view-more section">
+                        <button id="view-more" class="btn btn-primary">View More</button>
+                    </div>
+                <?php endif; ?>
             </div>
+            <?php wp_reset_postdata(); ?>
+        <?php else: ?>
+            <h2 class="text-center my-5"><strong>No Stories</strong></h4>
         <?php endif; ?>
     </main>
 
