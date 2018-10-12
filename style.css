@@ -947,7 +947,7 @@ header .carousel-indicators .active {
   }
 
   .menu-header-menu-container {
-    align-self: end;
+    margin-left: auto;
   }
 
   .learn-more-wrapper {

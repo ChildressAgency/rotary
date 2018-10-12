@@ -69,14 +69,14 @@
         <?php if( is_front_page() ): ?>
             <div id="home-carousel" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
-                    <li data-target="#home-carousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#home-carousel" data-slide-to="1"></li>
-                    <li data-target="#home-carousel" data-slide-to="2"></li>
+                    <?php $i = 0; while( have_rows( 'carousel' ) ): the_row(); ?>
+                        <li data-target="#home-carousel" data-slide-to="<?php echo $i; ?>" <?php if( $i == 0 ) echo 'class="active"'; ?>></li>
+                    <?php $i++; endwhile; ?>
                 </ol>
                 <div class="carousel-inner">
-                    <div class="carousel-item active" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/carousel-1.png);" ><p class="carousel-caption">Mountain View Interactors prepare their tree for the Hope House Festival of Trees</p></div>
-                    <div class="carousel-item" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/carousel-1.png);" ><p class="carousel-caption">Mountain View Interactors prepare their tree for the Hope House Festival of Trees</p></div>
-                    <div class="carousel-item" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/carousel-1.png);" ><p class="carousel-caption">Mountain View Interactors prepare their tree for the Hope House Festival of Trees</p></div>
+                    <?php $i = 0; while( have_rows( 'carousel' ) ): the_row(); ?>
+                        <div class="carousel-item <?php if( $i == 0 ) echo 'active'; ?>" style="background-image: url(<?php the_sub_field( 'image' ); ?>);" ><p class="carousel-caption"><?php the_sub_field( 'caption' ); ?></p></div>
+                    <?php $i++; endwhile; ?>
                 </div>
                 <a class="carousel-control-prev" href="#home-carousel" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
