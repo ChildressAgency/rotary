@@ -25,8 +25,8 @@ body {
   font-family: "Arial", sans-serif;
 }
 
-.header__title {
-  font-weight: 500;
+.header__title h1 {
+  font-weight: normal;
 }
 
 .header__title--rotary, header .carousel-caption, h1,
