@@ -1,6 +1,7 @@
-// sass-lint:disable nesting-depth
+// sass-lint:disable nesting-depth, function-name-format
 
 @import _variables.sass
+
 
 *,
 *::before,
@@ -806,7 +807,7 @@ header
         margin-bottom: 30px
 
 ///////////////////////////////////////////////////////////////////////////////
-// FOOTER                                                                    //
+// GALLERY                                                                   //
 ///////////////////////////////////////////////////////////////////////////////
 
 .gallery
@@ -861,6 +862,55 @@ header
         .gallery__info
             display: flex
             flex-direction: column
+
+///////////////////////////////////////////////////////////////////////////////
+// DOCUMENTS                                                                 //
+///////////////////////////////////////////////////////////////////////////////
+
+.documents
+    h3
+        margin-bottom: 0
+
+    p
+        margin-bottom: 0
+
+    &__title
+        align-items: center
+        cursor: pointer
+        display: flex
+        margin-bottom: 30px
+
+    &__close
+        font-size: 18px
+        margin-right: 15px
+        width: 15px
+
+    &__grid
+        align-items: center
+        display: grid
+        grid-gap: 15px
+        grid-template-columns: min-content minmax(max-content, 3fr) repeat(2, minmax(max-content, 1fr))
+
+    &__grid-wrapper
+        max-height: 0
+        overflow: hidden
+        transition: max-height .3s ease
+
+    &__icon
+        font-size: 20px
+
+    &__filename
+        &:first-of-type
+            grid-column: 2
+
+    &__filesize
+        justify-self: flex-end
+
+    &__underline
+        background-color: $color-secondary
+        grid-column: 2 / span 3
+        height: 2px
+        width: 100%
 
 ///////////////////////////////////////////////////////////////////////////////
 // FOOTER                                                                    //

@@ -52,6 +52,13 @@
 			'', 
 			true
 		);
+		wp_register_script(
+			'documents',
+			'/wp-content/themes/rotary/js/documents.js', 
+			array('jquery'), 
+			'', 
+			true
+		);
 
 		wp_enqueue_script( 'bootstrap-script' );
 
@@ -66,6 +73,9 @@
 
 		if( is_page_template( 'template-gallery.php' ) )
 			wp_enqueue_script( 'gallery' );
+
+		if( is_page_template( 'template-documents.php' ) )
+			wp_enqueue_script( 'documents' );
 
 		$params = array(
 			'ajaxurl' 				=> admin_url( 'admin-ajax.php' ),
