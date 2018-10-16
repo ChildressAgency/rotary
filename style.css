@@ -117,14 +117,23 @@ hr {
 
 .alignleft {
   float: left;
-  margin-bottom: 15px;
   margin-right: 15px;
 }
 
 .alignright {
   float: right;
-  margin-bottom: 15px;
   margin-left: 15px;
+}
+
+.alignright,
+.alignleft {
+  margin-bottom: 15px;
+}
+.alignright::after,
+.alignleft::after {
+  clear: both;
+  content: " ";
+  display: table;
 }
 
 header {
@@ -321,8 +330,12 @@ header .carousel-indicators .active {
 }
 
 .section {
-  overflow: hidden;
   padding: 45px 0;
+}
+.section::after {
+  clear: both;
+  content: " ";
+  display: table;
 }
 .section h2 {
   color: #0c3c7c;
@@ -814,6 +827,60 @@ header .carousel-indicators .active {
   margin-bottom: 30px;
 }
 
+.gallery {
+  margin-bottom: 60px;
+}
+.gallery:last-of-type {
+  margin-bottom: 0;
+}
+.gallery__grid {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: 1fr;
+}
+.gallery__item {
+  cursor: pointer;
+  height: 250px;
+  overflow: hidden;
+}
+.gallery__img {
+  float: left;
+  margin-right: 30px;
+  width: 100%;
+}
+.gallery__info {
+  display: none;
+  padding: 30px;
+  padding-top: 10px;
+}
+.gallery__close {
+  font-size: 20px;
+  margin-bottom: 10px;
+  margin-left: auto;
+}
+.gallery__img-title {
+  margin-bottom: 0;
+}
+.gallery__underline {
+  background-color: #faa742;
+  height: 1px;
+  width: 30%;
+}
+.gallery__active {
+  background-color: #fff;
+  box-shadow: 2px 2px 5px rgba(100, 100, 100, 0.4);
+  display: grid;
+  grid-column: span 3;
+  grid-template-columns: 1fr;
+  height: auto;
+  overflow: visible;
+  z-index: 99;
+}
+.gallery__active .gallery__info {
+  display: flex;
+  flex-direction: column;
+}
+
 .footer {
   text-align: center;
 }
@@ -879,6 +946,10 @@ header .carousel-indicators .active {
   .stories {
     grid-template-columns: 3fr 2fr;
   }
+
+  .gallery__grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 @media screen and (min-width: 768px) {
   header .carousel-caption {
@@ -921,6 +992,13 @@ header .carousel-indicators .active {
 
   .stories {
     grid-template-columns: 2fr 1fr;
+  }
+
+  .gallery__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .gallery__active {
+    grid-template-columns: 1fr 1fr;
   }
 
   .footer {

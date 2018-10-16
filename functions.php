@@ -38,6 +38,20 @@
 			'', 
 			true
 		);
+		wp_register_script(
+			'member-directory',
+			'/wp-content/themes/rotary/js/member-directory.js', 
+			array('jquery'), 
+			'', 
+			true
+		);
+		wp_register_script(
+			'gallery',
+			'/wp-content/themes/rotary/js/gallery.js', 
+			array('jquery'), 
+			'', 
+			true
+		);
 
 		wp_enqueue_script( 'bootstrap-script' );
 
@@ -46,6 +60,12 @@
 
 		if( is_page_template( 'template-stories.php' ) )
 			wp_enqueue_script( 'css-grid-masonry' );
+
+		if( is_page_template( 'template-members.php' ) )
+			wp_enqueue_script( 'member-directory' );
+
+		if( is_page_template( 'template-gallery.php' ) )
+			wp_enqueue_script( 'gallery' );
 
 		$params = array(
 			'ajaxurl' 				=> admin_url( 'admin-ajax.php' ),
