@@ -168,6 +168,7 @@
 	add_action( 'init', 'create_post_type_story' );
 
 	include "functions/custom-nav-walker.php";
+	include "functions/footer-nav-walker.php";
 	include "functions/button-shortcode.php";
 	include "functions/reload-event-posts.php";
 	include "functions/reload-newsletter-posts.php";
