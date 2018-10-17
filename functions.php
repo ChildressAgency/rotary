@@ -15,23 +15,81 @@
 	}
 	add_action('wp_enqueue_scripts', 'jquery_cdn');
 	function rotary_scripts(){
-	  wp_register_script(
-		'bootstrap-script', 
-		'//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', 
-		array('jquery'), 
-		'', 
-		true
-	  );
-	  wp_register_script(
-		'rotary-script', 
-		'/wp-content/themes/rotary/js/rotary-script.js', 
-		array('jquery'), 
-		'', 
-		true
-	  );
-	  
-	  wp_enqueue_script('bootstrap-script');
-	  //wp_enqueue_script('rotary-script');
+		global $wp_query;
+
+		wp_register_script(
+			'bootstrap-script', 
+			'//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', 
+			array('jquery'), 
+			'', 
+			true
+		);
+		wp_register_script(
+			'reload-posts', 
+			'/wp-content/themes/rotary/js/reload-posts.js', 
+			array('jquery'), 
+			'', 
+			true
+		);
+		wp_register_script(
+			'css-grid-masonry',
+			'/wp-content/themes/rotary/js/css-grid-masonry.js', 
+			array('jquery'), 
+			'', 
+			true
+		);
+		wp_register_script(
+			'member-directory',
+			'/wp-content/themes/rotary/js/member-directory.js', 
+			array('jquery'), 
+			'', 
+			true
+		);
+		wp_register_script(
+			'gallery',
+			'/wp-content/themes/rotary/js/gallery.js', 
+			array('jquery'), 
+			'', 
+			true
+		);
+		wp_register_script(
+			'documents',
+			'/wp-content/themes/rotary/js/documents.js', 
+			array('jquery'), 
+			'', 
+			true
+		);
+
+		wp_enqueue_script( 'bootstrap-script' );
+
+		if( is_page_template( 'template-newsletters.php' ) || is_page_template( 'template-calendar.php' ) )
+			wp_enqueue_script( 'reload-posts' );
+
+		if( is_page_template( 'template-stories.php' ) )
+			wp_enqueue_script( 'css-grid-masonry' );
+
+		if( is_page_template( 'template-members.php' ) )
+			wp_enqueue_script( 'member-directory' );
+
+		if( is_page_template( 'template-gallery.php' ) )
+			wp_enqueue_script( 'gallery' );
+
+		if( is_page_template( 'template-documents.php' ) )
+			wp_enqueue_script( 'documents' );
+
+		$params = array(
+			'ajaxurl' 				=> admin_url( 'admin-ajax.php' ),
+			'nonce'					=> wp_create_nonce( 'rotary-nonce' ),
+		);
+		wp_localize_script( 'reload-posts', 'ajaxParams', $params);
+
+		$storyParams = array(
+			'posts'					=> json_encode( $wp_query->query_vars ),
+			'current_page'			=> get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1,
+			'max_page'				=> ceil( $wp_query->found_posts / get_option( 'posts_per_page' ) ),
+		);
+		wp_localize_script( 'css-grid-masonry', 'ajaxParams', $params );
+		wp_localize_script( 'css-grid-masonry', 'storyParams', $storyParams );
 	}
 	add_action('wp_enqueue_scripts', 'rotary_scripts', 100);
 	
@@ -79,7 +137,10 @@
 
 	    function start_el(&$output, $item, $depth = 0, $args = array(), $current_object_id = 0) {
 	        global $post;
-	        $pageID = $post->ID; // id of current page
+	        if( $post )
+	        	$pageID = $post->ID; // id of current page
+	        else
+	        	$pageID = '';
 			$title = $item->title; // title of menu item
 			$objectID = $item->object_id; // page id of menu item
 			$permalink = $item->url; // link of menu item
@@ -250,4 +311,329 @@
 	    //return $buttons
 	    return $buttons;
 	}
+
+	/*
+	 * Newsletter Custom Post Type
+	 */
+	function create_post_type_newsletter() {
+	  register_post_type( 'newsletter',
+	    array(
+	      'labels' 			=> array(
+	        'name' 			=> __( 'Newsletters' ),
+	        'singular_name' => __( 'Newsletter' )
+	      ),
+	      'public' 			=> true,
+	      'has_archive' 	=> false,
+	      'rewrite'			=> array( 'slug' => 'newsletters' )
+	    )
+	  );
+	}
+	add_action( 'init', 'create_post_type_newsletter' );
+
+	/*
+	 * Newsletter Custom Post Type
+	 */
+	function create_post_type_story() {
+	  register_post_type( 'story',
+	    array(
+	      'labels' 			=> array(
+	        'name' 			=> __( 'Stories' ),
+	        'singular_name' => __( 'Story' )
+	      ),
+	      'public' 			=> true,
+	      'has_archive' 	=> false,
+	      'rewrite'			=> array( 'slug' => 'stories' )
+	    )
+	  );
+	}
+	add_action( 'init', 'create_post_type_story' );
+
+
+	/*
+	 * Reload event posts using given date parameters
+	 */
+	function get_event_posts(){
+		check_ajax_referer( 'rotary-nonce', 'security' );
+		global $post;
+
+		// get the parameters
+		$start_date = urldecode( $_POST['start_date'] );
+		if( $start_date ){
+			$start_date = new DateTime( $start_date );
+			$start_date = $start_date->format('Ymd');
+		}
+		$end_date = urldecode( $_POST['end_date'] );
+		if( $end_date ){
+			$end_date = new DateTime( $end_date );
+			$end_date = $end_date->format('Ymd');
+		}
+		$post_ID = urldecode( $_POST['post_ID'] );
+		$search = urldecode( $_POST['search'] );
+
+		// if no start date is provided, use today
+		if( !$start_date )
+			$start_date = current_time('Ymd');
+
+		$meta_query = array();
+
+		if( $start_date ){
+			array_push( $meta_query,  array(
+		            'key'           => 'date',
+		            'compare'       => '>=',
+		            'value'         => $start_date
+		        )
+			);
+		}
+
+		if( $end_date ){
+			array_push( $meta_query, array(
+		            'key'           => 'date',
+		            'compare'       => '<=',
+		            'value'         => $end_date
+		        )
+			);
+		}
+
+		// the value to be returned
+		$return = '';
+
+		// construct the query
+		$args = array(
+		    'post_type'         => 'post',
+		    'post_status'       => 'publish',
+		    'category__in'      => get_field( 'category', $post_ID ),
+		    'posts_per_page'    => -1,
+		    'meta_key'          => 'date',
+		    'orderby'           => 'meta_value_num',
+		    'order'             => 'ASC',
+		    's'					=> $search,
+		    'meta_query'        => $meta_query
+		);
+		$posts = new WP_Query( $args );
+		$month = '';
+		
+		if( $posts->have_posts() ){
+			while( $posts->have_posts() ){
+				$posts->the_post();
+
+		        $date = get_field( 'date', false, false );
+		        $date = new DateTime( $date );
+		        $newMonth = $date->format( 'F' );
+		
+		        if( $month != $newMonth ){
+		            $return .= '<h2 class="calendar__month-heading">' . $newMonth . '</h2>';
+		        }
+		        else{
+		            $return .= '<hr />'; 
+		        }
+		
+		        $return .= '<div class="event">
+		            <div class="event__summary">
+		                <div class="event__big-date">
+		                    <p>' . $date->format( 'd' ) . '</p>
+		                    <p>' . $date->format( 'D' ) . '</p>
+		                </div>
+		                <div class="event__info">
+		                    <div class="event__heading">
+		                        <div class="event__icon"><i class="far fa-calendar-alt"></i></div>
+		                        <div class="event__title-date">
+		                            <h3 class="event__title"><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>
+		                            <p class="event__date">' . $date->format( 'F d' ) . ' at ' . get_field( 'start_time' ) . ' to ' . get_field( 'end_time' ) . '</p>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>';
+
+		            if( get_field( 'speaker' ) || get_field( 'topic' ) || get_field( 'location' ) ){
+		                $return .= '<div class="event__details-wrapper">
+		                    <p id="event-details-toggle" class="event__details-toggle"><a>+ View Event Details</a></p>
+		                    <div id="event-details" class="event__details">';
+		                        if( get_field( 'speaker' ) ){ 
+		                        	$return .= '<p class="event__detail-property"><strong>Speaker: </strong></p><p class="event__detail-value">' . get_field( 'speaker' ) . '</p>'; 
+		                        }
+		                        if( get_field( 'topic' ) ){ 
+		                        	$return .= '<p class="event__detail-property"><strong>Topic: </strong></p><p class="event__detail-value">' . get_field( 'topic' ) . '</p>'; 
+		                        }
+		                        if( get_field( 'location' ) ){ 
+		                        	$return .= '<p class="event__detail-property"><strong>Location: </strong></p><p class="event__detail-value">' . get_field( 'location' ) . '</p>'; 
+		                        }
+		                $return .= '</div>
+		                </div>';
+		            }
+		        $return .= '</div>';
+
+		        if( $month != $newMonth )
+		            $month = $newMonth;
+
+		    }
+
+		    wp_reset_postdata();
+		    $return .= '<hr />';
+		} else{
+		    $return .= '<h2 class="text-center my-5"><strong>No Results</strong></h4>';
+		}
+
+		echo $return;
+
+		exit;
+	}
+	add_action( 'wp_ajax_get_event_posts', 'get_event_posts' );
+	add_action( 'wp_ajax_nopriv_get_event_posts', 'get_event_posts' );
+
+	/*
+	 * Reload event posts using given date parameters
+	 */
+	function get_newsletter_posts(){
+		check_ajax_referer( 'rotary-nonce', 'security' );
+		global $post;
+
+		// get the parameters
+		$start_date = urldecode( $_POST['start_date'] );
+		if( $start_date )
+			$start_date = new DateTime( $start_date );
+		
+		$end_date = urldecode( $_POST['end_date'] );
+		if( $end_date )
+			$end_date = new DateTime( $end_date );
+		
+		$post_ID = urldecode( $_POST['post_ID'] );
+		$search = urldecode( $_POST['search'] );
+
+		$date_query = array();
+
+		if( $start_date ){
+			array_push( $date_query, array(
+                    'year'      => $start_date->format('Y'),
+                    'month'     => $start_date->format('m'),
+                    'day'       => $start_date->format('d'),
+                    'compare'   => '>='
+                )
+			);
+		}
+
+		if( $end_date ){
+			array_push( $date_query, array(
+                    'year'      => $end_date->format('Y'),
+                    'month'     => $end_date->format('m'),
+                    'day'       => $end_date->format('d'),
+                    'compare'   => '<='
+                )
+			);
+		}
+
+		// the value to be returned
+		$return = '';
+
+		// construct the query
+		$args = array(
+		    'post_type'         => 'newsletter',
+		    'post_status'       => 'publish',
+		    'posts_per_page'    => 5,
+		    'orderby'           => 'date',
+		    'order'             => 'DESC',
+		    's'					=> $search,
+		    'date_query'        => $date_query
+		);
+		$posts = new WP_Query( $args );
+		$month = '';
+		
+		if( $posts->have_posts() ){
+			while( $posts->have_posts() ){
+				$posts->the_post();
+
+		        $date = get_the_date();
+		        $date = new DateTime( $date );
+		        $newMonth = $date->format( 'F' );
+		
+		        if( $month != $newMonth ){
+		            $return .= '<h2 class="newsletters__month-heading">' . $newMonth . '</h2>';
+		        }
+		        else{
+		            $return .= '<hr />'; 
+		        }
+		
+		        $return .= '<div class="newsletters">
+		            <div class="newsletters__summary">
+		                <div class="newsletters__big-date">
+		                    <p>' . $date->format( 'd' ) . '</p>
+		                    <p>' . $date->format( 'D' ) . '</p>
+		                </div>
+		                <div class="newsletters__info">
+		                    <div class="newsletters__heading">
+		                        <div class="newsletters__title-date">
+		                            <h3 class="newsletters__title"><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h3>
+		                            <p class="newsletters__date">' . $date->format( 'F j, Y' ) . '</p>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>';
+
+		            $return .= '<div class="newsletters__excerpt">';
+                        if( get_field( 'excerpt' ) ){
+                            $return .= '<p>' . get_field( 'excerpt' ) . '</p>';
+                        }
+                        else{
+                            $return .= '<p>' . mb_strimwidth( get_field( 'content' ), 0, 400, '...' ) . '</p>';
+                        }
+                        $return .= '<a href="' . get_the_permalink() . '">Read More</a>';
+                    $return .= '</div>';
+		        $return .= '</div>';
+
+		        if( $month != $newMonth )
+		            $month = $newMonth;
+
+		    }
+
+		    wp_reset_postdata();
+		    $return .= '<hr />';
+		} else{
+		    $return .= '<h2 class="text-center my-5"><strong>No Results</strong></h4>';
+		}
+
+		echo $return;
+
+		exit;
+	}
+	add_action( 'wp_ajax_get_newsletter_posts', 'get_newsletter_posts' );
+	add_action( 'wp_ajax_nopriv_get_newsletter_posts', 'get_newsletter_posts' );
+
+	function story_view_more(){
+
+		$paged = $_POST['page'] + 1; // next page to be loaded
+
+		$args = array(
+			'post_type'         => 'story',
+			'orderby'           => 'date',
+			'order'             => 'DESC',
+			'paged'				=> $paged,
+		);
+
+		$posts = new WP_Query( $args );
+	 
+		if( $posts->have_posts() ) :
+	 		$return = '';
+
+			while( $posts->have_posts() ): $posts->the_post();
+                $return .= '<div class="stories__story">
+                    <div class="stories__content">
+                        <img class="stories__img" src="' . get_field( 'featured_image' ) . '">
+                        <h3 class="stories__title">' . get_the_title() . '</h3>
+                        <p>';
+                if( get_field( 'excerpt' ) )
+                	$return .= get_field( 'excerpt' );
+                else
+                	$return .= mb_strimwidth( get_field( 'content' ), 0, 400, '...' );
+                $return .= '</p>
+                        <a class="stories__readmore" href="' . get_the_permalink() . '">Read More</a>
+                    </div>
+                </div>';
+            endwhile;
+		endif;
+
+		echo $return;
+
+		exit;
+	}
+	add_action('wp_ajax_story_view_more', 'story_view_more');
+	add_action('wp_ajax_nopriv_story_view_more', 'story_view_more');
 ?>

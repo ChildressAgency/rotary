@@ -18,6 +18,12 @@ if( have_rows('custom_fields') ):
         elseif( get_row_layout() == 'mismatched_columns' ):
             get_template_part( 'tp-mismatched-columns' );
 
+        elseif( get_row_layout() == '4-way_test' ):
+            get_template_part( 'tp-four-way-test' );
+
+        elseif( get_row_layout() == 'objective_list' ):
+            get_template_part( 'tp-objective-list' );
+
         endif;
 
     endwhile;

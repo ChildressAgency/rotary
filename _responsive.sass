@@ -10,6 +10,22 @@
     .learn-more
         max-width: 50%
 
+    .fourwaytest
+        grid-template-columns: repeat(2, 1fr)
+
+    .objectivelist
+        grid-template-columns: max-content 1fr
+
+    .twentyreasons
+        grid-template-columns: repeat(2, 1fr)
+
+    .stories
+        grid-template-columns: 3fr 2fr
+
+    .gallery
+        &__grid
+            grid-template-columns: 1fr 1fr
+
 
 @media screen and (min-width: 768px)
     header
@@ -21,6 +37,10 @@
     .main-menu
         .navbar-nav
             margin-left: auto
+
+    .section--thin
+        margin: 0 auto
+        width: 80%
 
     .mismatched-columns
         grid-template-columns: repeat(5, 1fr)
@@ -35,6 +55,23 @@
         &__subtitle
             margin-left: 60px
             margin-top: 0
+
+    .fourwaytest
+        grid-template-columns: repeat(4, 1fr)
+
+    .twentyreasons
+        &__heading
+            font-size: 28px
+
+    .stories
+        grid-template-columns: 2fr 1fr
+
+    .gallery
+        &__grid
+            grid-template-columns: repeat(3, 1fr)
+
+        &__active
+            grid-template-columns: 1fr 1fr
 
     .footer
         text-align: left
@@ -58,6 +95,9 @@
     header
         .carousel-caption
             font-size: 36px
+
+    .menu-header-menu-container
+        margin-left: auto
 
     .learn-more-wrapper
         flex-wrap: nowrap
@@ -95,6 +135,8 @@
         &__row
             margin-bottom: 30px
 
+    .twentyreasons
+        grid-template-columns: repeat(3, 1fr)
 
 
 @media screen and (min-width: 1200px)

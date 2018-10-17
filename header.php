@@ -31,18 +31,17 @@
         <nav class="header navbar navbar-expand-sm">
             <div class="container-fluid">
                 <a href="<?php echo esc_url( home_url() ); ?>" class="header__title" ><h1>Stafford <img class="header__logo" src="<?php echo get_stylesheet_directory_uri() ?>/images/wheel.png" /> <span class="header__title--rotary" >Rotary</span></h1></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header-menu" aria-controls="header-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
                 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="#">Rotary International</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">District 7610</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Member Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">DACdb Login</a></li>
-                    </ul>
+                <div class="collapse navbar-collapse" id="header-menu">
+                    <?php 
+                    wp_nav_menu( array(
+                        'theme_location'    =>  'header_menu',
+                        'menu_class'        =>  'navbar-nav',
+                        'walker'            =>  new Custom_Nav_Walker()
+                    ) ); ?>
                     <div class="header__search">
                         <?php get_search_form(); ?>
                     </div>
@@ -70,14 +69,14 @@
         <?php if( is_front_page() ): ?>
             <div id="home-carousel" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
-                    <li data-target="#home-carousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#home-carousel" data-slide-to="1"></li>
-                    <li data-target="#home-carousel" data-slide-to="2"></li>
+                    <?php $i = 0; while( have_rows( 'carousel' ) ): the_row(); ?>
+                        <li data-target="#home-carousel" data-slide-to="<?php echo $i; ?>" <?php if( $i == 0 ) echo 'class="active"'; ?>></li>
+                    <?php $i++; endwhile; ?>
                 </ol>
                 <div class="carousel-inner">
-                    <div class="carousel-item active" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/carousel-1.png);" ><p class="carousel-caption">Mountain View Interactors prepare their tree for the Hope House Festival of Trees</p></div>
-                    <div class="carousel-item" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/carousel-1.png);" ><p class="carousel-caption">Mountain View Interactors prepare their tree for the Hope House Festival of Trees</p></div>
-                    <div class="carousel-item" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/carousel-1.png);" ><p class="carousel-caption">Mountain View Interactors prepare their tree for the Hope House Festival of Trees</p></div>
+                    <?php $i = 0; while( have_rows( 'carousel' ) ): the_row(); ?>
+                        <div class="carousel-item <?php if( $i == 0 ) echo 'active'; ?>" style="background-image: url(<?php the_sub_field( 'image' ); ?>);" ><p class="carousel-caption"><?php the_sub_field( 'caption' ); ?></p></div>
+                    <?php $i++; endwhile; ?>
                 </div>
                 <a class="carousel-control-prev" href="#home-carousel" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -88,6 +87,8 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
+        <?php elseif( is_archive() ): ?>
+            
         <?php else: ?>
             <?php if( get_field( 'hero_image' ) ): ?>
                 <div class="hero" style="background-image: url(<?php the_field( 'hero_image' ); ?>">

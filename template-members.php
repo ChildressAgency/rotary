@@ -1,7 +1,7 @@
 <?php 
 
 /* Template Name: Members Template
- * Post Type: page
+ * Template Post Type: page
  */
 
 get_header(); ?>
