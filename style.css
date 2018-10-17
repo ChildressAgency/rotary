@@ -252,8 +252,8 @@ header .carousel-indicators .active {
   background-color: #fff;
   content: " ";
   height: 20px;
-  left: 20px;
   position: absolute;
+  right: 20px;
   top: -5px;
   transform: rotate(45deg);
   width: 20px;

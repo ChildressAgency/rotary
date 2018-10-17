@@ -193,7 +193,7 @@
 			    $indent = str_repeat( $t, $depth );
 			 
 			    // Default class.
-			    $classes = array( 'dropdown-menu' );
+			    $classes = array( 'dropdown-menu', 'dropdown-menu-right' );
 			 
 			    /**
 			     * Filters the CSS class(es) applied to a menu list element.
