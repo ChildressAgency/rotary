@@ -518,13 +518,19 @@ header .carousel-indicators .active {
   font-size: 14px;
 }
 
+.members {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: 1fr;
+}
 .members__info {
-  margin-bottom: 30px;
+  margin: 0;
+  padding-bottom: 15px;
   position: relative;
 }
 .members__info::after {
   background-color: #faa742;
-  bottom: -12px;
+  bottom: 0;
   content: " ";
   display: block;
   height: 2px;
@@ -534,6 +540,7 @@ header .carousel-indicators .active {
 }
 .members__name {
   font-size: 20px;
+  margin-bottom: 0;
 }
 .members__text {
   font-size: 16px;
@@ -1055,6 +1062,10 @@ header .carousel-indicators .active {
     font-size: 28px;
   }
 
+  .members {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .stories {
     grid-template-columns: 2fr 1fr;
   }
@@ -1132,13 +1143,6 @@ header .carousel-indicators .active {
     font-size: 14px;
   }
   .leaders__row {
-    margin-bottom: 30px;
-  }
-
-  .members__info {
-    margin: 0;
-  }
-  .members__row {
     margin-bottom: 30px;
   }
 

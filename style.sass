@@ -483,13 +483,18 @@ header
         font-size: 14px
 
 .members
+    display: grid
+    grid-gap: 30px
+    grid-template-columns: 1fr
+
     &__info
-        margin-bottom: 30px
+        margin: 0
+        padding-bottom: 15px
         position: relative
 
         &::after
             background-color: $color-secondary
-            bottom: -12px
+            bottom: 0
             content: ' '
             display: block
             height: 2px
@@ -499,6 +504,7 @@ header
 
     &__name
         font-size: 20px
+        margin-bottom: 0
 
     &__text
         font-size: 16px

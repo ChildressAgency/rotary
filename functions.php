@@ -39,13 +39,6 @@
 			true
 		);
 		wp_register_script(
-			'member-directory',
-			'/wp-content/themes/rotary/js/member-directory.js', 
-			array('jquery'), 
-			'', 
-			true
-		);
-		wp_register_script(
 			'gallery',
 			'/wp-content/themes/rotary/js/gallery.js', 
 			array('jquery'), 
@@ -59,6 +52,20 @@
 			'', 
 			true
 		);
+		wp_register_script(
+			'show-club-members',
+			'/wp-content/themes/rotary/js/show-club-members.js', 
+			array('jquery'), 
+			'', 
+			true
+		);
+		wp_register_script(
+			'retrieve-members-list',
+			'http://ismyrotaryclub.org/ClubMembers/ClubMembers.cfm?AccountID=7610&ClubID=27090&MemberTypeIDs=0,5,16&callback=showClubMembers', 
+			array('jquery'), 
+			'', 
+			true
+		);
 
 		wp_enqueue_script( 'bootstrap-script' );
 
@@ -68,14 +75,17 @@
 		if( is_page_template( 'template-stories.php' ) )
 			wp_enqueue_script( 'css-grid-masonry' );
 
-		if( is_page_template( 'template-members.php' ) )
-			wp_enqueue_script( 'member-directory' );
-
 		if( is_page_template( 'template-gallery.php' ) )
 			wp_enqueue_script( 'gallery' );
 
 		if( is_page_template( 'template-documents.php' ) )
 			wp_enqueue_script( 'documents' );
+
+		if( is_page_template( 'template-members.php' ) ){
+			wp_enqueue_script( 'show-club-members' );
+			wp_enqueue_script( 'retrieve-members-list' );
+		}
+
 
 		$params = array(
 			'ajaxurl' 				=> admin_url( 'admin-ajax.php' ),
