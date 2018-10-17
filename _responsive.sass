@@ -73,6 +73,18 @@
         &__active
             grid-template-columns: 1fr 1fr
 
+    .documents
+        &__grid
+            grid-template-columns: min-content minmax(max-content, 3fr) repeat(2, minmax(max-content, 1fr))
+
+        &__modified
+            height: auto
+            visibility: visible
+
+        &__filesize
+            height: auto
+            visibility: visible
+
     .footer
         text-align: left
 
