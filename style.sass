@@ -933,7 +933,7 @@ header
 .footer
     text-align: center
 
-    &__heading
+    h3
         font-size: $font-size-footer-heading
         margin-bottom: 5px
 
@@ -951,7 +951,7 @@ header
                 color: $color-dark
 
 .copyright
-    align-items: flex-end
+    align-items: center
     display: flex
     justify-content: center
     text-align: left
@@ -959,11 +959,16 @@ header
     img
         margin-right: 15px
 
-    &__link
+    a
         color: $color-secondary
 
         &:hover
             color: $color-black
+
+    p,
+    .alignleft,
+    .alignright
+        margin-bottom: 0
 
 
 @import _responsive.sass

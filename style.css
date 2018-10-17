@@ -944,7 +944,7 @@ header .carousel-indicators .active {
 .footer {
   text-align: center;
 }
-.footer__heading {
+.footer h3 {
   font-size: 20px;
   margin-bottom: 5px;
 }
@@ -963,7 +963,7 @@ header .carousel-indicators .active {
 }
 
 .copyright {
-  align-items: flex-end;
+  align-items: center;
   display: flex;
   justify-content: center;
   text-align: left;
@@ -971,11 +971,16 @@ header .carousel-indicators .active {
 .copyright img {
   margin-right: 15px;
 }
-.copyright__link {
+.copyright a {
   color: #faa742;
 }
-.copyright__link:hover {
+.copyright a:hover {
   color: #000;
+}
+.copyright p,
+.copyright .alignleft,
+.copyright .alignright {
+  margin-bottom: 0;
 }
 
 @media screen and (min-width: 576px) {
