@@ -26,6 +26,9 @@
         &__grid
             grid-template-columns: 1fr 1fr
 
+    .leaders
+        grid-template-columns: max-content 1fr
+
 
 @media screen and (min-width: 768px)
     header
@@ -62,6 +65,9 @@
     .twentyreasons
         &__heading
             font-size: 28px
+
+    .leaders
+        grid-template-columns: max-content 1fr max-content 1fr
 
     .members
         grid-template-columns: 1fr 1fr
@@ -118,15 +124,10 @@
         flex-wrap: nowrap
 
     .leaders
-        &__img
-            display: inline-block
-            margin: 0
-            margin-right: 15px
-
-        &__info
-            display: inline-block
-            margin: 0
-            padding: 0
+        // &__info
+        //     display: inline-block
+        //     margin: 0
+        //     padding: 0
 
         &__name
             font-size: 24px

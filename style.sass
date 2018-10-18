@@ -65,6 +65,9 @@ div
 hr
     background-color: $color-dark
 
+a
+    color: $color-primary
+
 
 .aligncenter
     display: block
@@ -449,15 +452,15 @@ header
 ///////////////////////////////////////////////////////////////////////////////
 
 .leaders
-    &__img
-        display: block
-        margin: 0 auto
-        margin-bottom: 15px
+    display: grid
+    grid-gap: 30px
+    grid-template-columns: 1fr 1fr
 
-    &__info
-        display: block
-        margin-bottom: 30px
-        padding: 0 10%
+    &__img
+        align-self: center
+        justify-self: center
+        margin: 0
+        width: 100%
 
     &__name
         color: $color-primary

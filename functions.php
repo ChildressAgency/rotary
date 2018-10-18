@@ -66,6 +66,20 @@
 			'', 
 			true
 		);
+		wp_register_script(
+			'show-leaders-page',
+			'/wp-content/themes/rotary/js/show-leaders-page.js', 
+			array('jquery'), 
+			'', 
+			true
+		);
+		wp_register_script(
+			'retrieve-leaders-list',
+			'http://IsMyRotaryClub.org/Club/clubleaders.cfm?D=7610&ClubID=27090&callback=showLeadersPage', 
+			array('jquery'), 
+			'', 
+			true
+		);
 
 		wp_enqueue_script( 'bootstrap-script' );
 
@@ -84,6 +98,11 @@
 		if( is_page_template( 'template-members.php' ) ){
 			wp_enqueue_script( 'show-club-members' );
 			wp_enqueue_script( 'retrieve-members-list' );
+		}
+
+		if( is_page_template( 'template-leaders.php' ) ){
+			wp_enqueue_script( 'show-leaders-page' );
+			wp_enqueue_script( 'retrieve-leaders-list' );
 		}
 
 
