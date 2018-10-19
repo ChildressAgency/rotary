@@ -109,6 +109,10 @@ hr {
   background-color: #353a40;
 }
 
+a {
+  color: #0c3c7c;
+}
+
 .aligncenter {
   display: block;
   margin-left: auto;
@@ -252,8 +256,8 @@ header .carousel-indicators .active {
   background-color: #fff;
   content: " ";
   height: 20px;
-  left: 20px;
   position: absolute;
+  right: 20px;
   top: -5px;
   transform: rotate(45deg);
   width: 20px;
@@ -484,15 +488,16 @@ header .carousel-indicators .active {
   margin-top: auto;
 }
 
-.leaders__img {
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 15px;
+.leaders {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: 1fr 1fr;
 }
-.leaders__info {
-  display: block;
-  margin-bottom: 30px;
-  padding: 0 10%;
+.leaders__img {
+  align-self: center;
+  justify-self: center;
+  margin: 0;
+  width: 100%;
 }
 .leaders__name {
   color: #0c3c7c;
@@ -518,13 +523,19 @@ header .carousel-indicators .active {
   font-size: 14px;
 }
 
+.members {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: 1fr;
+}
 .members__info {
-  margin-bottom: 30px;
+  margin: 0;
+  padding-bottom: 15px;
   position: relative;
 }
 .members__info::after {
   background-color: #faa742;
-  bottom: -12px;
+  bottom: 0;
   content: " ";
   display: block;
   height: 2px;
@@ -534,6 +545,7 @@ header .carousel-indicators .active {
 }
 .members__name {
   font-size: 20px;
+  margin-bottom: 0;
 }
 .members__text {
   font-size: 16px;
@@ -881,6 +893,12 @@ header .carousel-indicators .active {
   flex-direction: column;
 }
 
+.documents {
+  margin-bottom: 30px;
+}
+.documents:last-of-type {
+  margin-bottom: 0;
+}
 .documents h3 {
   margin-bottom: 0;
 }
@@ -896,13 +914,14 @@ header .carousel-indicators .active {
 .documents__close {
   font-size: 18px;
   margin-right: 15px;
-  width: 15px;
+  min-width: 20px;
+  width: 20px;
 }
 .documents__grid {
   align-items: center;
   display: grid;
   grid-gap: 15px;
-  grid-template-columns: min-content minmax(max-content, 3fr) repeat(2, minmax(max-content, 1fr));
+  grid-template-columns: min-content minmax(min-content, 3fr) 0 0;
 }
 .documents__grid-wrapper {
   max-height: 0;
@@ -912,11 +931,20 @@ header .carousel-indicators .active {
 .documents__icon {
   font-size: 20px;
 }
+.documents__filename {
+  word-break: break-all;
+}
 .documents__filename:first-of-type {
   grid-column: 2;
 }
+.documents__modified {
+  height: 0;
+  visibility: hidden;
+}
 .documents__filesize {
+  height: 0;
   justify-self: flex-end;
+  visibility: hidden;
 }
 .documents__underline {
   background-color: #faa742;
@@ -928,7 +956,7 @@ header .carousel-indicators .active {
 .footer {
   text-align: center;
 }
-.footer__heading {
+.footer h3 {
   font-size: 20px;
   margin-bottom: 5px;
 }
@@ -947,7 +975,7 @@ header .carousel-indicators .active {
 }
 
 .copyright {
-  align-items: flex-end;
+  align-items: center;
   display: flex;
   justify-content: center;
   text-align: left;
@@ -955,11 +983,16 @@ header .carousel-indicators .active {
 .copyright img {
   margin-right: 15px;
 }
-.copyright__link {
+.copyright a {
   color: #faa742;
 }
-.copyright__link:hover {
+.copyright a:hover {
   color: #000;
+}
+.copyright p,
+.copyright .alignleft,
+.copyright .alignright {
+  margin-bottom: 0;
 }
 
 @media screen and (min-width: 576px) {
@@ -993,6 +1026,10 @@ header .carousel-indicators .active {
 
   .gallery__grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .leaders {
+    grid-template-columns: max-content 1fr;
   }
 }
 @media screen and (min-width: 768px) {
@@ -1034,6 +1071,14 @@ header .carousel-indicators .active {
     font-size: 28px;
   }
 
+  .leaders {
+    grid-template-columns: max-content 1fr max-content 1fr;
+  }
+
+  .members {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .stories {
     grid-template-columns: 2fr 1fr;
   }
@@ -1043,6 +1088,18 @@ header .carousel-indicators .active {
   }
   .gallery__active {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .documents__grid {
+    grid-template-columns: min-content minmax(max-content, 3fr) repeat(2, minmax(max-content, 1fr));
+  }
+  .documents__modified {
+    height: auto;
+    visibility: visible;
+  }
+  .documents__filesize {
+    height: auto;
+    visibility: visible;
   }
 
   .footer {
@@ -1076,16 +1133,6 @@ header .carousel-indicators .active {
     flex-wrap: nowrap;
   }
 
-  .leaders__img {
-    display: inline-block;
-    margin: 0;
-    margin-right: 15px;
-  }
-  .leaders__info {
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-  }
   .leaders__name {
     font-size: 24px;
   }
@@ -1099,13 +1146,6 @@ header .carousel-indicators .active {
     font-size: 14px;
   }
   .leaders__row {
-    margin-bottom: 30px;
-  }
-
-  .members__info {
-    margin: 0;
-  }
-  .members__row {
     margin-bottom: 30px;
   }
 
