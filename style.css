@@ -268,6 +268,21 @@ header .carousel-indicators .active {
   display: none;
 }
 
+.dropdown-item {
+  position: relative;
+}
+.dropdown-item.active {
+  background-color: #f8f9fa;
+  color: #353a40;
+}
+.dropdown-item.active::before {
+  content: ">";
+  height: 5px;
+  position: absolute;
+  transform: translateX(-200%);
+  width: 5px;
+}
+
 .navbar-expand-sm > .container,
 .navbar-expand-sm > .container-fluid {
   flex-wrap: wrap;
