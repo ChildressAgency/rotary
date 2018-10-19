@@ -234,6 +234,20 @@ header
     &::after
         display: none
 
+.dropdown-item
+    position: relative
+
+    &.active
+        background-color: $color-nav-hover
+        color: $color-dark
+
+        &::before
+            content: '>'
+            height: 5px
+            position: absolute
+            transform: translateX(-200%)
+            width: 5px
+
 .navbar-expand-sm > .container,
 .navbar-expand-sm > .container-fluid
     flex-wrap: wrap
