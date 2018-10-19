@@ -1,10 +1,10 @@
 <?php
 
-	add_action('wp_footer', 'show_template');
-	function show_template() {
-		global $template;
-		print_r($template);
-	}
+	// add_action('wp_footer', 'show_template');
+	// function show_template() {
+	// 	global $template;
+	// 	print_r($template);
+	// }
 
 	function jquery_cdn(){
 	  if(!is_admin()){
