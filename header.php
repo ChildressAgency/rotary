@@ -75,7 +75,9 @@
                 </ol>
                 <div class="carousel-inner">
                     <?php $i = 0; while( have_rows( 'carousel' ) ): the_row(); ?>
-                        <div class="carousel-item <?php if( $i == 0 ) echo 'active'; ?>" style="background-image: url(<?php the_sub_field( 'image' ); ?>);" ><p class="carousel-caption"><?php the_sub_field( 'caption' ); ?></p></div>
+                        <div class="carousel-item <?php if( $i == 0 ) echo 'active'; ?>" style="background-image: url(<?php the_sub_field( 'image' ); ?>);" >
+                            <?php if( get_sub_field( 'caption' ) ): ?><p class="carousel-caption"><?php the_sub_field( 'caption' ); ?></p><?php endif; ?>
+                        </div>
                     <?php $i++; endwhile; ?>
                 </div>
                 <a class="carousel-control-prev" href="#home-carousel" role="button" data-slide="prev">

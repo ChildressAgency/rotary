@@ -148,34 +148,32 @@ header .navbar-collapse {
   flex-direction: column;
 }
 header .carousel {
+  background-color: #353a40;
   height: 500px;
 }
 header .carousel-inner {
   height: 100%;
 }
 header .carousel-item {
-  background-size: cover;
+  background-repeat: no-repeat;
+  background-size: contain;
   height: 100%;
-}
-header .carousel-item::after {
-  background-color: rgba(0, 0, 0, 0.4);
-  content: " ";
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 0;
 }
 header .carousel-caption {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
   bottom: unset;
   color: #fff;
+  display: flex;
   font-size: 20px;
-  left: 20%;
-  right: 20%;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  padding-left: 20%;
+  padding-right: 20%;
+  right: 0;
   text-align: center;
-  top: 50%;
-  transform: translateY(-50%);
+  width: 100%;
   z-index: 1;
 }
 header .carousel-control-prev, header .carousel-control-next {
@@ -311,6 +309,8 @@ header .carousel-indicators .active {
 
 .main-menu {
   background-color: #0c3c7c;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
+  z-index: 99;
 }
 .main-menu .navbar-nav {
   margin-left: 0;
@@ -1050,8 +1050,8 @@ header .carousel-indicators .active {
 @media screen and (min-width: 768px) {
   header .carousel-caption {
     font-size: 30px;
-    left: 30%;
-    right: 30%;
+    padding-left: 30%;
+    padding-right: 30%;
   }
 
   .main-menu .navbar-nav {
