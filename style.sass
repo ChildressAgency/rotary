@@ -105,36 +105,35 @@ header
         flex-direction: column
 
     .carousel
+        background-color: $color-dark
         height: 500px
 
         &-inner
             height: 100%
 
         &-item
-            background-size: cover
+            background-repeat: no-repeat
+            background-size: contain
             height: 100%
-
-            &::after
-                background-color: $color-carousel-shade
-                content: ' '
-                height: 100%
-                left: 0
-                position: absolute
-                top: 0
-                width: 100%
-                z-index: 0
 
         &-caption
             @extend %font-bold
+            align-items: center
+            background-color: $color-carousel-shade
             bottom: unset
             color: $color-white
+            display: flex
             font-size: 20px
-            left: 20%
-            right: 20%
+            height: 100%
+            justify-content: center
+            left: 0
+            padding-left: 20%
+            padding-right: 20%
+            right: 0
             text-align: center
-            top: 50%
-            transform: translateY(-50%)
+            width: 100%
             z-index: 1
+
 
         &-control-prev,
         &-control-next
@@ -273,6 +272,8 @@ header
 
 .main-menu
     background-color: $color-primary
+    box-shadow: 0 5px 5px $color-carousel-shade
+    z-index: 99
 
     .navbar-nav
         margin-left: 0
